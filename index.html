@@ -3,334 +3,555 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f5132">
-<meta name="description" content="My First Islam - A simple Islamic learning app for new Muslims and beginners.">
+<meta name="theme-color" content="#0b5d3b">
+<meta name="description" content="My First Islam - Learn Islam step by step for new Muslims and beginners.">
 <title>My First Islam</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --green:#0f5132;
-  --dark:#073b27;
-  --light:#f4f8f5;
-  --gold:#d4a72c;
-  --white:#ffffff;
-  --text:#24332b;
-  --muted:#66756c;
-  --shadow:0 8px 25px rgba(0,0,0,.08);
+--green:#0b5d3b;
+--dark:#063d28;
+--gold:#d6ad45;
+--cream:#f8f6ed;
+--white:#fff;
+--text:#24352d;
+--muted:#718078;
+--border:#e1e8e3;
+--shadow:0 8px 28px rgba(0,0,0,.08);
 }
+
+html{scroll-behavior:smooth}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--light);
-  color:var(--text);
-  line-height:1.6;
+font-family:Arial,Helvetica,sans-serif;
+background:#f4f7f5;
+color:var(--text);
+line-height:1.65;
+padding-bottom:72px;
 }
+
+button{font-family:inherit}
 
 header{
-  background:linear-gradient(135deg,var(--dark),var(--green));
-  color:white;
-  padding:18px 5%;
-  position:sticky;
-  top:0;
-  z-index:100;
-  box-shadow:0 3px 15px rgba(0,0,0,.15);
+background:linear-gradient(135deg,var(--dark),var(--green));
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 3px 18px rgba(0,0,0,.18);
 }
 
-.nav{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.header-inner{
+max-width:1100px;
+margin:auto;
+height:68px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
 }
 
 .logo{
-  font-size:21px;
-  font-weight:bold;
+font-size:21px;
+font-weight:700;
+letter-spacing:.2px;
 }
 
-.logo span{
-  color:#f2d36b;
-}
+.logo span{color:#f1d06b}
 
 .menu-btn{
-  background:none;
-  border:0;
-  color:white;
-  font-size:25px;
-  cursor:pointer;
+border:0;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:24px;
+width:42px;
+height:42px;
+border-radius:10px;
+cursor:pointer;
 }
 
-nav{
-  display:none;
-  position:absolute;
-  top:65px;
-  left:0;
-  right:0;
-  background:var(--dark);
-  padding:15px 5%;
+.desktop-nav{
+display:none;
 }
 
-nav.active{
-  display:block;
+.mobile-menu{
+display:none;
+background:var(--dark);
+padding:10px 20px 16px;
 }
 
-nav button{
-  display:block;
-  width:100%;
-  padding:12px;
-  margin:5px 0;
-  border:0;
-  border-radius:8px;
-  background:rgba(255,255,255,.08);
-  color:white;
-  text-align:left;
-  cursor:pointer;
+.mobile-menu.open{display:block}
+
+.mobile-menu button{
+display:block;
+width:100%;
+border:0;
+background:rgba(255,255,255,.08);
+color:white;
+padding:12px;
+margin:5px 0;
+border-radius:8px;
+text-align:left;
+cursor:pointer;
 }
 
 main{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
+max-width:1100px;
+margin:auto;
+padding:20px;
 }
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
+.page{display:none}
+.page.active{display:block}
 
 .hero{
-  background:linear-gradient(135deg,var(--green),#176b46);
-  color:white;
-  border-radius:22px;
-  padding:45px 25px;
-  text-align:center;
-  margin-bottom:25px;
-  box-shadow:var(--shadow);
+background:
+linear-gradient(rgba(6,61,40,.92),rgba(11,93,59,.92)),
+radial-gradient(circle at top,#2b8961,#063d28);
+color:white;
+border-radius:24px;
+padding:48px 25px;
+text-align:center;
+margin:4px 0 22px;
+box-shadow:var(--shadow);
 }
 
 .moon{
-  font-size:55px;
-  margin-bottom:10px;
+font-size:58px;
+margin-bottom:5px;
 }
 
 .hero h1{
-  font-size:36px;
-  margin-bottom:10px;
+font-size:38px;
+margin-bottom:8px;
+}
+
+.hero .tagline{
+font-size:18px;
+color:#e5f1eb;
+margin-bottom:22px;
 }
 
 .hero p{
-  max-width:650px;
-  margin:0 auto 22px;
-  color:#e8f3ed;
+max-width:650px;
+margin:0 auto 24px;
+color:#dcece4;
 }
 
 .primary{
-  background:var(--gold);
-  color:#172116;
-  border:0;
-  padding:14px 25px;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-  font-size:16px;
+background:var(--gold);
+border:0;
+color:#18251e;
+font-weight:700;
+padding:14px 24px;
+border-radius:11px;
+cursor:pointer;
+font-size:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
 }
 
-.section-title{
-  text-align:center;
-  margin:25px 0 18px;
+.primary:hover{transform:translateY(-1px)}
+
+.lang-box{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:16px 0 24px;
 }
 
-.section-title h2{
-  color:var(--green);
+.lang-btn{
+background:white;
+border:1px solid var(--border);
+padding:9px 17px;
+border-radius:22px;
+cursor:pointer;
+color:var(--green);
+font-weight:600;
 }
+
+.lang-btn.active{
+background:var(--green);
+color:white;
+border-color:var(--green);
+}
+
+.section-heading{
+text-align:center;
+margin:26px 0 18px;
+}
+
+.section-heading h2{
+color:var(--green);
+font-size:25px;
+}
+
+.section-heading p{color:var(--muted)}
 
 .cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:17px;
 }
 
 .card{
-  background:white;
-  padding:23px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  cursor:pointer;
-  transition:.2s;
+background:white;
+border:1px solid var(--border);
+border-radius:17px;
+padding:23px;
+box-shadow:var(--shadow);
+cursor:pointer;
+transition:.2s;
 }
 
-.card:hover{
-  transform:translateY(-3px);
-}
+.card:hover{transform:translateY(-3px)}
 
-.icon{
-  font-size:35px;
-  margin-bottom:8px;
+.card-icon{
+font-size:35px;
+margin-bottom:8px;
 }
 
 .card h3{
-  color:var(--green);
-  margin-bottom:7px;
+color:var(--green);
+margin-bottom:6px;
 }
 
-.card p{
-  color:var(--muted);
-}
+.card p{color:var(--muted);font-size:14px}
 
 .lesson{
-  background:white;
-  padding:28px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  margin-bottom:20px;
+background:white;
+border-radius:18px;
+padding:28px;
+box-shadow:var(--shadow);
+margin-bottom:20px;
+border:1px solid var(--border);
 }
 
+.lesson h1,
 .lesson h2{
-  color:var(--green);
-  margin-bottom:15px;
+color:var(--green);
+margin-bottom:15px;
 }
 
 .lesson h3{
-  margin:20px 0 8px;
-  color:var(--dark);
+color:var(--dark);
+margin:22px 0 9px;
+}
+
+.lesson p{margin-bottom:12px}
+
+.back{
+border:0;
+background:#e7efe9;
+color:var(--green);
+font-weight:700;
+padding:10px 16px;
+border-radius:9px;
+cursor:pointer;
+margin-bottom:16px;
+}
+
+.info{
+background:#f5f8f6;
+border-left:4px solid var(--green);
+padding:15px;
+border-radius:6px;
+margin:14px 0;
 }
 
 .arabic{
-  font-size:30px;
-  direction:rtl;
-  text-align:center;
-  background:#f5f0df;
-  padding:20px;
-  border-radius:12px;
-  margin:15px 0;
-  line-height:2;
+direction:rtl;
+text-align:center;
+font-size:30px;
+line-height:2;
+background:var(--cream);
+border-radius:13px;
+padding:20px 12px;
+margin:15px 0;
+font-family:"Times New Roman",serif;
 }
 
-.translation{
-  background:#f5f8f6;
-  padding:15px;
-  border-left:4px solid var(--green);
-  margin:10px 0;
-  border-radius:5px;
+.translit{
+background:#f3f7f4;
+padding:14px;
+border-radius:10px;
+margin:10px 0;
+font-style:italic;
 }
 
-.back{
-  background:#e8eee9;
-  color:var(--green);
-  border:0;
-  padding:10px 18px;
-  border-radius:8px;
-  cursor:pointer;
-  margin-bottom:20px;
-  font-weight:bold;
+.meaning{
+background:#fafafa;
+border:1px solid var(--border);
+padding:14px;
+border-radius:10px;
+margin:10px 0;
+}
+
+.urdu{
+direction:rtl;
+text-align:right;
+font-size:18px;
 }
 
 .step{
-  border-left:4px solid var(--gold);
-  padding:15px;
-  margin:15px 0;
-  background:#fffdf6;
-  border-radius:5px;
+display:flex;
+gap:14px;
+background:#fffdf5;
+border:1px solid #eee6ca;
+padding:16px;
+border-radius:12px;
+margin:12px 0;
 }
 
-.step-number{
-  font-weight:bold;
-  color:var(--green);
+.step-num{
+min-width:34px;
+height:34px;
+background:var(--green);
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.step-content strong{
+color:var(--green);
 }
 
 .dua{
-  background:white;
-  padding:20px;
-  margin:15px 0;
-  border-radius:15px;
-  box-shadow:var(--shadow);
+background:white;
+border:1px solid var(--border);
+border-radius:16px;
+padding:20px;
+margin:15px 0;
+box-shadow:0 4px 15px rgba(0,0,0,.04);
 }
 
-.quiz-box{
-  background:white;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
+.dua h3{margin-top:0}
+
+.audio-btn{
+background:#e7f1eb;
+border:0;
+color:var(--green);
+padding:10px 15px;
+border-radius:9px;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+}
+
+.quiz{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:var(--shadow);
+border:1px solid var(--border);
+}
+
+.quiz-question{
+font-size:19px;
+font-weight:bold;
+margin:18px 0;
 }
 
 .option{
-  display:block;
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  background:#f1f5f2;
-  border:1px solid #d8e2db;
-  border-radius:9px;
-  cursor:pointer;
-  text-align:left;
-  font-size:15px;
+width:100%;
+padding:14px;
+margin:7px 0;
+background:#f3f7f4;
+border:1px solid #dce6df;
+border-radius:10px;
+text-align:left;
+cursor:pointer;
+font-size:15px;
 }
 
 .option:hover{
-  background:#e4eee7;
+background:#e5efe9;
 }
 
 .result{
-  margin-top:15px;
-  padding:15px;
-  border-radius:10px;
-  font-weight:bold;
+padding:14px;
+margin-top:15px;
+border-radius:10px;
+font-weight:bold;
+display:none;
 }
 
-.language{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin:20px 0;
+.correct{
+display:block;
+background:#e2f3e8;
+color:#17643f;
 }
 
-.language button{
-  border:1px solid #ccd8d0;
-  background:white;
-  padding:8px 15px;
-  border-radius:20px;
-  cursor:pointer;
+.wrong{
+display:block;
+background:#fae8e6;
+color:#9d392d;
+}
+
+.quiz-next{
+margin-top:17px;
+}
+
+.progress{
+height:8px;
+background:#e5ebe7;
+border-radius:10px;
+overflow:hidden;
+margin:15px 0;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:var(--green);
+transition:.3s;
+}
+
+.badge{
+display:inline-block;
+background:#edf4ef;
+color:var(--green);
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+margin-bottom:10px;
 }
 
 footer{
-  text-align:center;
-  background:var(--dark);
-  color:#dbe9e1;
-  padding:30px 20px;
-  margin-top:40px;
+background:var(--dark);
+color:#dbe9e1;
+text-align:center;
+padding:30px 20px;
+margin-top:30px;
 }
 
-.small{
-  color:var(--muted);
-  font-size:14px;
+footer .small{
+color:#b8cec2;
+font-size:13px;
+margin-top:7px;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:67px;
+background:white;
+border-top:1px solid var(--border);
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:999;
+box-shadow:0 -4px 18px rgba(0,0,0,.08);
+}
+
+.bottom-nav button{
+border:0;
+background:none;
+color:#68766f;
+font-size:11px;
+cursor:pointer;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:3px;
+}
+
+.bottom-nav button span{
+font-size:21px;
+}
+
+.bottom-nav button.active{
+color:var(--green);
+font-weight:bold;
+}
+
+.hide{display:none!important}
+
+@media(min-width:760px){
+
+body{padding-bottom:0}
+
+.menu-btn{display:none}
+
+.desktop-nav{
+display:flex;
+gap:4px;
+}
+
+.desktop-nav button{
+border:0;
+background:transparent;
+color:white;
+padding:10px 11px;
+border-radius:8px;
+cursor:pointer;
+font-size:13px;
+}
+
+.desktop-nav button:hover{
+background:rgba(255,255,255,.12);
+}
+
+.mobile-menu{display:none!important}
+
+.bottom-nav{display:none}
+
+.hero{padding:60px 30px}
+
 }
 
 @media(max-width:600px){
-  .hero h1{
-    font-size:29px;
-  }
 
-  main{
-    padding:14px;
-  }
+main{padding:14px}
 
-  .lesson{
-    padding:20px;
-  }
+.hero{
+padding:38px 18px;
+border-radius:19px;
+}
 
-  .arabic{
-    font-size:25px;
-  }
+.hero h1{font-size:30px}
+
+.hero .tagline{font-size:16px}
+
+.lesson{
+padding:20px;
+border-radius:15px;
+}
+
+.arabic{
+font-size:25px;
+}
+
+.cards{
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.card{
+padding:17px;
+}
+
+.card-icon{font-size:29px}
+
+.card h3{font-size:16px}
+
+.card p{font-size:13px}
+
+.urdu{font-size:17px}
+
+}
+
+@media(max-width:380px){
+
+.cards{grid-template-columns:1fr}
+
 }
 </style>
 </head>
@@ -338,565 +559,986 @@ footer{
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">🌙 My First <span>Islam</span></div>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  </div>
 
-  <nav id="navMenu">
-    <button onclick="showPage('home')">🏠 Home</button>
-    <button onclick="showPage('start')">🌱 Start Here</button>
-    <button onclick="showPage('salah')">🕌 Learn Salah</button>
-    <button onclick="showPage('wudu')">💧 Learn Wudu</button>
-    <button onclick="showPage('duas')">🤲 Daily Duas</button>
-    <button onclick="showPage('quiz')">🧠 Quiz</button>
-  </nav>
+<div class="header-inner">
+
+<div class="logo">🌙 My First <span>Islam</span></div>
+
+<nav class="desktop-nav">
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('start')">Start Here</button>
+<button onclick="showPage('salah')">Salah</button>
+<button onclick="showPage('wudu')">Wudu</button>
+<button onclick="showPage('duas')">Duas</button>
+<button onclick="showPage('quiz')">Quiz</button>
+</nav>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('start')">🌱 Start Here</button>
+<button onclick="showPage('salah')">🕌 Learn Salah</button>
+<button onclick="showPage('wudu')">💧 Learn Wudu</button>
+<button onclick="showPage('duas')">🤲 Daily Duas</button>
+<button onclick="showPage('quiz')">🧠 Quiz</button>
+</div>
+
 </header>
+
 
 <main>
 
 <!-- HOME -->
+
 <section id="home" class="page active">
 
-  <div class="hero">
-    <div class="moon">🌙</div>
-    <h1>My First Islam</h1>
-    <p>
-      Learn Islam step by step in a simple and friendly way.
-      Designed especially for new Muslims and beginners.
-    </p>
-    <button class="primary" onclick="showPage('start')">
-      START LEARNING
-    </button>
-  </div>
+<div class="hero">
 
-  <div class="language">
-    <button onclick="setLanguage('en')">🇬🇧 English</button>
-    <button onclick="setLanguage('ur')">🇵🇰 اردو</button>
-  </div>
+<div class="moon">🌙</div>
 
-  <div class="section-title">
-    <h2>Begin Your Journey</h2>
-    <p>Choose what you would like to learn.</p>
-  </div>
+<h1>My First Islam</h1>
 
-  <div class="cards">
+<div class="tagline">Learn Islam step by step</div>
 
-    <div class="card" onclick="showPage('start')">
-      <div class="icon">🌱</div>
-      <h3>Start Here</h3>
-      <p>Learn the basic beliefs and foundations of Islam.</p>
-    </div>
+<p>
+A simple learning journey for new Muslims and anyone who wants
+to understand the basics of Islam.
+</p>
 
-    <div class="card" onclick="showPage('salah')">
-      <div class="icon">🕌</div>
-      <h3>Learn Salah</h3>
-      <p>Learn prayer step by step with Arabic and meanings.</p>
-    </div>
+<button class="primary" onclick="showPage('start')">
+START LEARNING
+</button>
 
-    <div class="card" onclick="showPage('wudu')">
-      <div class="icon">💧</div>
-      <h3>Learn Wudu</h3>
-      <p>Understand the basic steps of ablution before prayer.</p>
-    </div>
+</div>
 
-    <div class="card" onclick="showPage('duas')">
-      <div class="icon">🤲</div>
-      <h3>Daily Duas</h3>
-      <p>Learn simple supplications for everyday life.</p>
-    </div>
 
-    <div class="card" onclick="showPage('quiz')">
-      <div class="icon">🧠</div>
-      <h3>Take a Quiz</h3>
-      <p>Test your beginner Islamic knowledge.</p>
-    </div>
+<div class="lang-box">
 
-  </div>
+<button id="englishBtn" class="lang-btn active" onclick="setLanguage('en')">
+🇬🇧 English
+</button>
+
+<button id="urduBtn" class="lang-btn" onclick="setLanguage('ur')">
+🇵🇰 اردو
+</button>
+
+</div>
+
+
+<div class="section-heading">
+<h2>Begin Your Journey</h2>
+<p>Choose your first lesson</p>
+</div>
+
+
+<div class="cards">
+
+<div class="card" onclick="showPage('start')">
+<div class="card-icon">🌱</div>
+<h3>Start Here</h3>
+<p>Learn the foundations of Islam.</p>
+</div>
+
+<div class="card" onclick="showPage('salah')">
+<div class="card-icon">🕌</div>
+<h3>Learn Salah</h3>
+<p>Learn the prayer step by step.</p>
+</div>
+
+<div class="card" onclick="showPage('wudu')">
+<div class="card-icon">💧</div>
+<h3>Learn Wudu</h3>
+<p>Learn purification before prayer.</p>
+</div>
+
+<div class="card" onclick="showPage('duas')">
+<div class="card-icon">🤲</div>
+<h3>Daily Duas</h3>
+<p>Learn useful daily supplications.</p>
+</div>
+
+<div class="card" onclick="showPage('quiz')">
+<div class="card-icon">🧠</div>
+<h3>Islamic Quiz</h3>
+<p>Test your beginner knowledge.</p>
+</div>
+
+</div>
+
 </section>
 
 
 <!-- START HERE -->
+
 <section id="start" class="page">
 
-  <button class="back" onclick="showPage('home')">← Back</button>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-  <div class="lesson">
-    <h2>🌱 Start Here</h2>
+<div class="lesson">
 
-    <p>
-      Welcome. Islam is a way of life based on worshipping Allah alone,
-      following His guidance and following the example of His Messenger
-      Muhammad ﷺ.
-    </p>
+<span class="badge">LESSON 1</span>
 
-    <h3>1. What is Islam?</h3>
+<h2>🌱 Start Here</h2>
 
-    <p>
-      Islam means submitting yourself to Allah, worshipping Him alone,
-      and following His guidance.
-    </p>
+<p>
+Welcome to your journey of learning Islam. You do not need to learn
+everything in one day. Start with the foundations and continue step by step.
+</p>
 
-    <h3>2. Who is Allah?</h3>
 
-    <p>
-      Allah is the one true God and the Creator of everything.
-      Muslims worship Allah alone.
-    </p>
+<h3>What is Islam?</h3>
 
-    <div class="translation">
-      <strong>English:</strong> Allah is the One worthy of worship.
-    </div>
+<p>
+Islam is submission to Allah and obedience to His guidance.
+Muslims worship Allah alone and follow the guidance brought by His Messenger
+Muhammad ﷺ.
+</p>
 
-    <div class="translation" dir="rtl">
-      <strong>اردو:</strong> اللہ ہی وہ واحد ذات ہے جو عبادت کے لائق ہے۔
-    </div>
 
-    <h3>3. The Shahadah</h3>
+<h3>Who is Allah?</h3>
 
-    <div class="arabic">
-      أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ،
-      وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ
-    </div>
+<p>
+Allah is the One true God, the Creator and Sustainer of everything.
+He alone deserves worship.
+</p>
 
-    <div class="translation">
-      <strong>Transliteration:</strong><br>
-      Ashhadu an la ilaha illallah, wa ashhadu anna Muhammadan rasulullah.
-    </div>
+<div class="meaning">
+<strong>English:</strong><br>
+Allah is the One worthy of worship.
+</div>
 
-    <div class="translation">
-      <strong>English:</strong><br>
-      I testify that there is no deity worthy of worship except Allah,
-      and I testify that Muhammad is the Messenger of Allah.
-    </div>
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+اللہ ہی وہ واحد ذات ہے جو عبادت کے لائق ہے۔
+</div>
 
-    <div class="translation" dir="rtl">
-      <strong>اردو:</strong><br>
-      میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبودِ برحق نہیں،
-      اور میں گواہی دیتا ہوں کہ محمد ﷺ اللہ کے رسول ہیں۔
-    </div>
 
-    <h3>4. The Five Pillars of Islam</h3>
+<h3>The Shahadah</h3>
 
-    <div class="step">
-      <span class="step-number">1. Shahadah</span><br>
-      Testimony of faith.
-    </div>
+<div class="arabic">
+أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ،
+وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ
+</div>
 
-    <div class="step">
-      <span class="step-number">2. Salah</span><br>
-      Performing the five daily prayers.
-    </div>
+<div class="translit">
+<strong>Transliteration:</strong><br>
+Ashhadu an la ilaha illallah, wa ashhadu anna Muhammadan rasulullah.
+</div>
 
-    <div class="step">
-      <span class="step-number">3. Zakat</span><br>
-      Giving obligatory charity when eligible.
-    </div>
+<div class="meaning">
+<strong>English:</strong><br>
+I testify that there is no deity worthy of worship except Allah,
+and I testify that Muhammad is the Messenger of Allah.
+</div>
 
-    <div class="step">
-      <span class="step-number">4. Sawm</span><br>
-      Fasting during Ramadan.
-    </div>
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبودِ برحق نہیں،
+اور میں گواہی دیتا ہوں کہ محمد ﷺ اللہ کے رسول ہیں۔
+</div>
 
-    <div class="step">
-      <span class="step-number">5. Hajj</span><br>
-      Pilgrimage to Makkah for those who are able.
-    </div>
-  </div>
+
+<h3>The Five Pillars of Islam</h3>
+
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-content">
+<strong>Shahadah</strong><br>
+The testimony of faith.
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-content">
+<strong>Salah</strong><br>
+The five daily prayers.
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-content">
+<strong>Zakat</strong><br>
+Obligatory charity for those who meet its conditions.
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-content">
+<strong>Sawm</strong><br>
+Fasting during Ramadan.
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">5</div>
+<div class="step-content">
+<strong>Hajj</strong><br>
+Pilgrimage to Makkah for those who are able.
+</div>
+</div>
+
+
+<h3>The Six Articles of Faith</h3>
+
+<p>Muslims believe in:</p>
+
+<div class="info">
+1. Allah<br>
+2. His angels<br>
+3. His books<br>
+4. His messengers<br>
+5. The Last Day<br>
+6. Divine decree (Al-Qadar), its good and its difficult aspects.
+</div>
+
+</div>
+
 </section>
 
 
 <!-- SALAH -->
+
 <section id="salah" class="page">
 
-  <button class="back" onclick="showPage('home')">← Back</button>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-  <div class="lesson">
-    <h2>🕌 Learn Salah</h2>
+<div class="lesson">
 
-    <p>
-      Salah is the daily prayer performed by Muslims.
-      A new Muslim can learn it gradually, step by step.
-    </p>
+<span class="badge">LESSON 2</span>
 
-    <h3>Before Salah</h3>
+<h2>🕌 Learn Salah</h2>
 
-    <div class="step">
-      <span class="step-number">1. Make Wudu</span><br>
-      Perform ablution when required.
-    </div>
+<p>
+Salah is one of the Five Pillars of Islam. Muslims perform five obligatory
+daily prayers.
+</p>
 
-    <div class="step">
-      <span class="step-number">2. Face the Qiblah</span><br>
-      Face toward the Ka'bah in Makkah.
-    </div>
 
-    <div class="step">
-      <span class="step-number">3. Make the intention</span><br>
-      Know in your heart which prayer you are performing.
-    </div>
+<h3>Before Salah</h3>
 
-    <h3>Starting the Prayer</h3>
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-content">
+<strong>Purification</strong><br>
+Perform Wudu when it is required.
+</div>
+</div>
 
-    <div class="arabic">
-      الله أكبر
-    </div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-content">
+<strong>Clothing</strong><br>
+Wear clothing that fulfills the requirements for prayer.
+</div>
+</div>
 
-    <div class="translation">
-      <strong>Allahu Akbar</strong><br>
-      English: Allah is the Greatest.<br>
-      اردو: اللہ سب سے بڑا ہے۔
-    </div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-content">
+<strong>Place</strong><br>
+Pray in a clean place.
+</div>
+</div>
 
-    <h3>Surah Al-Fatihah</h3>
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-content">
+<strong>Qiblah</strong><br>
+Face toward the Ka'bah in Makkah.
+</div>
+</div>
 
-    <div class="arabic">
-      الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
-      الرَّحْمَٰنِ الرَّحِيمِ<br>
-      مَالِكِ يَوْمِ الدِّينِ<br>
-      إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
-      اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
-      صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
-      غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
-    </div>
+<div class="step">
+<div class="step-num">5</div>
+<div class="step-content">
+<strong>Intention</strong><br>
+Have the intention in your heart for the prayer you are performing.
+</div>
+</div>
 
-    <div class="translation">
-      <strong>English:</strong><br>
-      All praise is for Allah, Lord of the worlds.
-      The Most Merciful, the Especially Merciful.
-      Master of the Day of Judgment.
-      You alone we worship and You alone we ask for help.
-      Guide us to the straight path.
-    </div>
 
-    <div class="translation" dir="rtl">
-      <strong>اردو:</strong><br>
-      سب تعریفیں اللہ کے لیے ہیں جو تمام جہانوں کا رب ہے۔
-      نہایت مہربان، بہت رحم فرمانے والا۔
-      روزِ جزا کا مالک۔
-      ہم صرف تیری عبادت کرتے ہیں اور صرف تجھ ہی سے مدد مانگتے ہیں۔
-      ہمیں سیدھا راستہ دکھا۔
-    </div>
+<h3>Takbeer</h3>
 
-    <h3>Ruku</h3>
+<div class="arabic">
+اللَّهُ أَكْبَرُ
+</div>
 
-    <div class="arabic">
-      سُبْحَانَ رَبِّيَ الْعَظِيمِ
-    </div>
+<div class="translit">
+<strong>Allahu Akbar</strong>
+</div>
 
-    <div class="translation">
-      Glory is to my Lord, the Most Great.
-    </div>
+<div class="meaning">
+<strong>English:</strong> Allah is the Greatest.
+</div>
 
-    <h3>Sujood</h3>
+<div class="meaning urdu">
+<strong>اردو:</strong> اللہ سب سے بڑا ہے۔
+</div>
 
-    <div class="arabic">
-      سُبْحَانَ رَبِّيَ الْأَعْلَى
-    </div>
 
-    <div class="translation">
-      Glory is to my Lord, the Most High.
-    </div>
+<h3>Ruku</h3>
 
-    <h3>Ending the Prayer</h3>
+<div class="arabic">
+سُبْحَانَ رَبِّيَ الْعَظِيمِ
+</div>
 
-    <div class="arabic">
-      السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ
-    </div>
+<div class="translit">
+<strong>Subhana Rabbiyal-'Azim</strong>
+</div>
 
-    <div class="translation">
-      May the peace and mercy of Allah be upon you.
-    </div>
+<div class="meaning">
+<strong>English:</strong> Glory is to my Lord, the Most Great.
+</div>
 
-    <p class="small">
-      Note: This is an introductory learning page. Detailed prayer
-      instructions and differences in recognized schools of Islamic
-      jurisprudence should be reviewed carefully before final publication.
-    </p>
+<div class="meaning urdu">
+<strong>اردو:</strong> پاک ہے میرا رب، عظمت والا۔
+</div>
 
-  </div>
+
+<h3>Sujood</h3>
+
+<div class="arabic">
+سُبْحَانَ رَبِّيَ الْأَعْلَى
+</div>
+
+<div class="translit">
+<strong>Subhana Rabbiyal-A'la</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong> Glory is to my Lord, the Most High.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong> پاک ہے میرا رب، سب سے بلند۔
+</div>
+
+
+<h3>Salam — Ending the Prayer</h3>
+
+<div class="arabic">
+السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ
+</div>
+
+<div class="translit">
+<strong>Assalamu 'alaykum wa rahmatullah</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong> Peace and the mercy of Allah be upon you.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong> تم پر سلامتی اور اللہ کی رحمت ہو۔
+</div>
+
+
+<div class="info">
+<strong>Beginner tip:</strong> Learn the prayer gradually. Start by learning
+the movements and the words, then practice until you become comfortable.
+</div>
+
+</div>
+
 </section>
 
 
 <!-- WUDU -->
+
 <section id="wudu" class="page">
 
-  <button class="back" onclick="showPage('home')">← Back</button>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-  <div class="lesson">
+<div class="lesson">
 
-    <h2>💧 Learn Wudu</h2>
+<span class="badge">LESSON 3</span>
 
-    <p>
-      Wudu is the ritual purification performed before certain acts
-      of worship, including Salah.
-    </p>
+<h2>💧 Learn Wudu</h2>
 
-    <div class="step">
-      <span class="step-number">Step 1 — Intention</span><br>
-      Make the intention for purification in your heart.
-    </div>
+<p>
+Wudu is the ritual purification performed before prayer when purification
+is required.
+</p>
 
-    <div class="step">
-      <span class="step-number">Step 2 — Wash the hands</span><br>
-      Wash both hands thoroughly.
-    </div>
 
-    <div class="step">
-      <span class="step-number">Step 3 — Rinse the mouth</span><br>
-      Rinse the mouth.
-    </div>
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-content">
+<strong>Intention</strong><br>
+Make the intention for purification in your heart.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 4 — Clean the nose</span><br>
-      Take water into the nose and clean it.
-    </div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-content">
+<strong>Wash the hands</strong><br>
+Wash both hands thoroughly.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 5 — Wash the face</span><br>
-      Wash the entire face.
-    </div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-content">
+<strong>Rinse the mouth</strong><br>
+Rinse the mouth with water.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 6 — Wash the arms</span><br>
-      Wash the arms including the elbows.
-    </div>
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-content">
+<strong>Clean the nose</strong><br>
+Clean the nose with water.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 7 — Wipe the head</span><br>
-      Wipe the head.
-    </div>
+<div class="step">
+<div class="step-num">5</div>
+<div class="step-content">
+<strong>Wash the face</strong><br>
+Wash the whole face.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 8 — Wipe the ears</span><br>
-      Wipe the ears.
-    </div>
+<div class="step">
+<div class="step-num">6</div>
+<div class="step-content">
+<strong>Wash the arms</strong><br>
+Wash the arms including the elbows.
+</div>
+</div>
 
-    <div class="step">
-      <span class="step-number">Step 9 — Wash the feet</span><br>
-      Wash both feet including the ankles.
-    </div>
+<div class="step">
+<div class="step-num">7</div>
+<div class="step-content">
+<strong>Wipe the head</strong><br>
+Wipe the head with wet hands.
+</div>
+</div>
 
-    <div class="translation">
-      <strong>Important:</strong>
-      The exact details and recommended sequence can vary in some
-      matters between recognized schools of Islamic jurisprudence.
-    </div>
+<div class="step">
+<div class="step-num">8</div>
+<div class="step-content">
+<strong>Wipe the ears</strong><br>
+Wipe the ears.
+</div>
+</div>
 
-  </div>
+<div class="step">
+<div class="step-num">9</div>
+<div class="step-content">
+<strong>Wash the feet</strong><br>
+Wash both feet including the ankles.
+</div>
+</div>
+
+
+<div class="info">
+<strong>Important:</strong> Some details of Wudu have differences among
+recognized schools of Islamic jurisprudence. The app will later include
+more detailed explanations for beginners.
+</div>
+
+</div>
+
 </section>
 
 
 <!-- DUAS -->
+
 <section id="duas" class="page">
 
-  <button class="back" onclick="showPage('home')">← Back</button>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-  <div class="lesson">
+<div class="lesson">
 
-    <h2>🤲 Daily Duas</h2>
+<span class="badge">LESSON 4</span>
 
-    <div class="dua">
-      <h3>Before Eating</h3>
+<h2>🤲 Daily Duas</h2>
 
-      <div class="arabic">
-        بِسْمِ اللَّهِ
-      </div>
+<p>
+Start with a few simple supplications and learn their meanings.
+</p>
 
-      <p><strong>Transliteration:</strong> Bismillah</p>
 
-      <p><strong>English:</strong> In the name of Allah.</p>
+<div class="dua">
 
-      <p dir="rtl">
-        <strong>اردو:</strong> اللہ کے نام سے۔
-      </p>
-    </div>
+<h3>Before Eating</h3>
 
-    <div class="dua">
-      <h3>Before Sleeping</h3>
+<div class="arabic">
+بِسْمِ اللَّهِ
+</div>
 
-      <div class="arabic">
-        بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا
-      </div>
+<div class="translit">
+<strong>Bismillah</strong>
+</div>
 
-      <p>
-        <strong>Transliteration:</strong>
-        Bismika Allahumma amutu wa ahya.
-      </p>
+<div class="meaning">
+<strong>English:</strong> In the name of Allah.
+</div>
 
-      <p>
-        <strong>English:</strong>
-        In Your name, O Allah, I die and I live.
-      </p>
+<div class="meaning urdu">
+<strong>اردو:</strong> اللہ کے نام سے۔
+</div>
 
-      <p dir="rtl">
-        <strong>اردو:</strong>
-        اے اللہ! تیرے ہی نام کے ساتھ مرتا اور جیتا ہوں۔
-      </p>
-    </div>
+</div>
 
-    <div class="dua">
-      <h3>Seeking Forgiveness</h3>
 
-      <div class="arabic">
-        أَسْتَغْفِرُ اللَّهَ
-      </div>
+<div class="dua">
 
-      <p>
-        <strong>Transliteration:</strong>
-        Astaghfirullah.
-      </p>
+<h3>Before Sleeping</h3>
 
-      <p>
-        <strong>English:</strong>
-        I seek forgiveness from Allah.
-      </p>
+<div class="arabic">
+اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا
+</div>
 
-      <p dir="rtl">
-        <strong>اردو:</strong>
-        میں اللہ سے بخشش مانگتا ہوں۔
-      </p>
-    </div>
+<div class="translit">
+<strong>Allahumma bismika amutu wa ahya</strong>
+</div>
 
-  </div>
+<div class="meaning">
+<strong>English:</strong>
+O Allah, in Your name I die and I live.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong>
+اے اللہ! تیرے ہی نام کے ساتھ مرتا اور جیتا ہوں۔
+</div>
+
+</div>
+
+
+<div class="dua">
+
+<h3>Seeking Forgiveness</h3>
+
+<div class="arabic">
+أَسْتَغْفِرُ اللَّهَ
+</div>
+
+<div class="translit">
+<strong>Astaghfirullah</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong>
+I seek forgiveness from Allah.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong>
+میں اللہ سے بخشش مانگتا ہوں۔
+</div>
+
+</div>
+
+
+<div class="dua">
+
+<h3>When Leaving Home</h3>
+
+<div class="arabic">
+بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ
+</div>
+
+<div class="translit">
+<strong>
+Bismillah, tawakkaltu 'alallah, la hawla wa la quwwata illa billah
+</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong>
+In the name of Allah. I place my trust in Allah.
+There is no power and no strength except with Allah.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong>
+اللہ کے نام سے۔ میں نے اللہ پر بھروسہ کیا۔
+اللہ کے سوا نہ کوئی طاقت ہے نہ قوت۔
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 
 <!-- QUIZ -->
+
 <section id="quiz" class="page">
 
-  <button class="back" onclick="showPage('home')">← Back</button>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-  <div class="quiz-box">
+<div class="quiz">
 
-    <h2>🧠 Beginner Islamic Quiz</h2>
+<span class="badge">BEGINNER QUIZ</span>
 
-    <p id="question" style="margin:20px 0;font-weight:bold;">
-      Who is the Creator of everything?
-    </p>
+<h2>🧠 Test Your Knowledge</h2>
 
-    <button class="option" onclick="answer(false)">
-      A. A human
-    </button>
+<div class="progress">
+<div id="progressBar" class="progress-bar"></div>
+</div>
 
-    <button class="option" onclick="answer(true)">
-      B. Allah
-    </button>
+<div id="question" class="quiz-question"></div>
 
-    <button class="option" onclick="answer(false)">
-      C. An angel
-    </button>
+<div id="options"></div>
 
-    <button class="option" onclick="answer(false)">
-      D. A prophet
-    </button>
+<div id="result" class="result"></div>
 
-    <div id="result"></div>
+<button id="nextButton" class="primary quiz-next hide" onclick="nextQuestion()">
+NEXT QUESTION
+</button>
 
-    <button class="primary" style="margin-top:20px;" onclick="nextQuestion()">
-      NEXT QUESTION
-    </button>
+</div>
 
-  </div>
 </section>
 
 </main>
 
+
 <footer>
-  <h3>🌙 My First Islam</h3>
-  <p>Learn Islam. Practice Islam. Live Islam.</p>
-  <p class="small" style="color:#c8d8cf;margin-top:10px;">
-    Created for new Muslims and beginners.
-  </p>
+
+<h3>🌙 My First Islam</h3>
+
+<p>Learn Islam • Practice Islam • Live Islam</p>
+
+<p class="small">
+A simple educational project for new Muslims and beginners.
+</p>
+
+<p class="small">
+Islamic content will continue to be expanded and reviewed.
+</p>
+
 </footer>
+
+
+<!-- MOBILE NAVIGATION -->
+
+<div class="bottom-nav">
+
+<button id="navHome" class="active" onclick="showPage('home')">
+<span>🏠</span>
+Home
+</button>
+
+<button id="navStart" onclick="showPage('start')">
+<span>🌱</span>
+Start
+</button>
+
+<button id="navSalah" onclick="showPage('salah')">
+<span>🕌</span>
+Salah
+</button>
+
+<button id="navDuas" onclick="showPage('duas')">
+<span>🤲</span>
+Duas
+</button>
+
+<button id="navQuiz" onclick="showPage('quiz')">
+<span>🧠</span>
+Quiz
+</button>
+
+</div>
 
 
 <script>
 
+/* ------------------------------
+   PAGE NAVIGATION
+------------------------------ */
+
 function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("active");
+document.getElementById("mobileMenu").classList.toggle("open");
 }
+
 
 function showPage(pageId){
 
-  document.querySelectorAll(".page").forEach(function(page){
-    page.classList.remove("active");
-  });
+document.querySelectorAll(".page").forEach(function(page){
+page.classList.remove("active");
+});
 
-  document.getElementById(pageId).classList.add("active");
+const page=document.getElementById(pageId);
 
-  document.getElementById("navMenu").classList.remove("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+if(page){
+page.classList.add("active");
 }
 
-function setLanguage(lang){
+document.getElementById("mobileMenu").classList.remove("open");
 
-  if(lang === "ur"){
-    alert("اردو ورژن جلد مزید بہتر بنایا جائے گا۔ ابھی عربی، انگریزی اور اردو بنیادی معنی دستیاب ہیں۔");
-  }else{
-    alert("English selected.");
-  }
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+updateBottomNavigation(pageId);
 }
 
-function answer(correct){
 
-  const result = document.getElementById("result");
+/* ------------------------------
+   MOBILE NAVIGATION
+------------------------------ */
 
-  if(correct){
-    result.innerHTML = "✅ Correct! Allah is the Creator of everything.";
-    result.style.background = "#e4f4e8";
-    result.style.color = "#176b46";
-  }else{
-    result.innerHTML = "❌ Try again. The correct answer is Allah.";
-    result.style.background = "#fbe9e7";
-    result.style.color = "#a33b2c";
-  }
+function updateBottomNavigation(pageId){
+
+document.querySelectorAll(".bottom-nav button").forEach(function(btn){
+btn.classList.remove("active");
+});
+
+const map={
+home:"navHome",
+start:"navStart",
+salah:"navSalah",
+duas:"navDuas",
+quiz:"navQuiz"
+};
+
+if(map[pageId]){
+document.getElementById(map[pageId]).classList.add("active");
 }
 
-let questionNumber = 1;
+}
+
+
+/* ------------------------------
+   LANGUAGE
+------------------------------ */
+
+function setLanguage(language){
+
+const english=document.getElementById("englishBtn");
+const urdu=document.getElementById("urduBtn");
+
+if(language==="ur"){
+
+urdu.classList.add("active");
+english.classList.remove("active");
+
+document.documentElement.lang="ur";
+
+alert(
+"اردو موڈ منتخب کیا گیا ہے۔ اگلے مرحلے میں ہم ایپ کے تمام انگریزی متن کا مکمل اردو ترجمہ شامل کریں گے۔"
+);
+
+}else{
+
+english.classList.add("active");
+urdu.classList.remove("active");
+
+document.documentElement.lang="en";
+
+alert("English mode selected.");
+
+}
+
+}
+
+
+/* ------------------------------
+   QUIZ
+------------------------------ */
+
+const quizQuestions=[
+
+{
+question:"Who is the One true God worthy of worship?",
+options:[
+"A. An angel",
+"B. Allah",
+"C. A prophet",
+"D. A human"
+],
+correct:1
+},
+
+{
+question:"How many obligatory daily prayers are there?",
+options:[
+"A. Three",
+"B. Four",
+"C. Five",
+"D. Seven"
+],
+correct:2
+},
+
+{
+question:"What is the first pillar of Islam?",
+options:[
+"A. Zakat",
+"B. Hajj",
+"C. Sawm",
+"D. Shahadah"
+],
+correct:3
+},
+
+{
+question:"During which month do Muslims fast?",
+options:[
+"A. Ramadan",
+"B. Muharram",
+"C. Rajab",
+"D. Shawwal"
+],
+correct:0
+},
+
+{
+question:"Toward what direction do Muslims face during Salah?",
+options:[
+"A. Madinah",
+"B. Jerusalem",
+"C. The Ka'bah in Makkah",
+"D. Mount Uhud"
+],
+correct:2
+}
+
+];
+
+let currentQuestion=0;
+let score=0;
+let answered=false;
+
+
+function loadQuestion(){
+
+const q=quizQuestions[currentQuestion];
+
+document.getElementById("question").textContent=
+(currentQuestion+1)+". "+q.question;
+
+const optionsContainer=document.getElementById("options");
+
+optionsContainer.innerHTML="";
+
+q.options.forEach(function(option,index){
+
+const button=document.createElement("button");
+
+button.className="option";
+button.textContent=option;
+
+button.onclick=function(){
+checkAnswer(index);
+};
+
+optionsContainer.appendChild(button);
+
+});
+
+document.getElementById("result").className="result";
+document.getElementById("result").textContent="";
+
+document.getElementById("nextButton").classList.add("hide");
+
+document.getElementById("progressBar").style.width=
+((currentQuestion)/quizQuestions.length*100)+"%";
+
+answered=false;
+}
+
+
+function checkAnswer(selected){
+
+if(answered)return;
+
+answered=true;
+
+const q=quizQuestions[currentQuestion];
+const result=document.getElementById("result");
+
+if(selected===q.correct){
+
+score++;
+
+result.className="result correct";
+result.textContent="✅ Correct! Well done.";
+
+}else{
+
+result.className="result wrong";
+result.textContent=
+"❌ Not quite. The correct answer is "+q.options[q.correct];
+
+}
+
+document.getElementById("nextButton").classList.remove("hide");
+
+document.getElementById("progressBar").style.width=
+((currentQuestion+1)/quizQuestions.length*100)+"%";
+}
+
 
 function nextQuestion(){
 
-  const question = document.getElementById("question");
-  const result = document.getElementById("result");
+if(currentQuestion<quizQuestions.length-1){
 
-  result.innerHTML = "";
+currentQuestion++;
+loadQuestion();
 
-  questionNumber++;
+}else{
 
-  if(questionNumber === 2){
-    question.innerHTML = "How many obligatory daily prayers do Muslims perform?";
+showQuizResult();
 
-    document.querySelectorAll(".option")[0].innerHTML = "A. Three";
-    document.querySelectorAll(".option")[1].innerHTML = "B. Five";
-    document.querySelectorAll(".option")[2].innerHTML = "C. Seven";
-    document.querySelectorAll(".option")[3].innerHTML = "D. Ten";
-
-  }else if(questionNumber === 3){
-
-    question.innerHTML = "What is the first pillar of Islam?";
-
-    document.querySelectorAll(".option")[0].innerHTML = "A. Hajj";
-    document.querySelectorAll(".option")[1].innerHTML = "B. Zakat";
-    document.querySelectorAll(".option")[2].innerHTML = "C. Shahadah";
-    document.querySelectorAll(".option")[3].innerHTML = "D. Sawm";
-
-  }else{
-
-    questionNumber = 1;
-
-    question.innerHTML = "Who is the Creator of everything?";
-
-    document.querySelectorAll(".option")[0].innerHTML = "A. A human";
-    document.querySelectorAll(".option")[1].innerHTML = "B. Allah";
-    document.querySelectorAll(".option")[2].innerHTML = "C. An angel";
-    document.querySelectorAll(".option")[3].innerHTML = "D. A prophet";
-  }
 }
+
+}
+
+
+function showQuizResult(){
+
+document.getElementById("question").textContent=
+"🎉 Quiz Complete!";
+
+document.getElementById("options").innerHTML="";
+
+document.getElementById("result").className="result correct";
+
+document.getElementById("result").textContent=
+"You scored "+score+" out of "+quizQuestions.length+". Keep learning and growing!";
+
+document.getElementById("nextButton").textContent="RESTART QUIZ";
+
+document.getElementById("nextButton").classList.remove("hide");
+
+document.getElementById("nextButton").onclick=function(){
+
+currentQuestion=0;
+score=0;
+
+document.getElementById("nextButton").textContent="NEXT QUESTION";
+
+document.getElementById("nextButton").onclick=nextQuestion;
+
+loadQuestion();
+
+};
+
+document.getElementById("progressBar").style.width="100%";
+
+}
+
+
+/* START QUIZ */
+
+loadQuestion();
 
 </script>
 
