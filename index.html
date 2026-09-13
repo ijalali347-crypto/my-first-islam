@@ -3,83 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b5d3b">
-<meta name="description" content="My First Islam - Learn Islam step by step for new Muslims and beginners.">
+<meta name="theme-color" content="#075331">
+<meta name="description" content="My First Islam - Learn Islam step by step">
 <title>My First Islam</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
---green:#0b5d3b;
---dark:#063d28;
---gold:#d6ad45;
---cream:#f8f6ed;
+--green:#075331;
+--dark:#043b24;
+--gold:#d5ad43;
+--cream:#f8f3e4;
+--bg:#f3f7f5;
 --white:#fff;
---text:#24352d;
---muted:#718078;
---border:#e1e8e3;
---shadow:0 8px 28px rgba(0,0,0,.08);
+--text:#24342c;
+--muted:#6d7b74;
+--border:#dfe8e2;
+--shadow:0 7px 25px rgba(0,0,0,.08)
 }
-
-html{scroll-behavior:smooth}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
-background:#f4f7f5;
+background:var(--bg);
 color:var(--text);
 line-height:1.65;
-padding-bottom:72px;
+padding-bottom:70px
 }
 
 button{font-family:inherit}
 
 header{
 background:linear-gradient(135deg,var(--dark),var(--green));
-color:white;
+color:#fff;
 position:sticky;
 top:0;
 z-index:1000;
-box-shadow:0 3px 18px rgba(0,0,0,.18);
+box-shadow:0 3px 18px rgba(0,0,0,.18)
 }
 
-.header-inner{
+.header{
+height:68px;
 max-width:1100px;
 margin:auto;
-height:68px;
+padding:0 20px;
 display:flex;
 align-items:center;
-justify-content:space-between;
-padding:0 20px;
+justify-content:space-between
 }
 
 .logo{
 font-size:21px;
-font-weight:700;
-letter-spacing:.2px;
+font-weight:bold
 }
 
-.logo span{color:#f1d06b}
+.logo span{color:#f0cf62}
 
-.menu-btn{
-border:0;
-background:rgba(255,255,255,.12);
-color:white;
+.menu{
 font-size:24px;
+border:0;
+background:rgba(255,255,255,.1);
+color:white;
 width:42px;
 height:42px;
-border-radius:10px;
-cursor:pointer;
+border-radius:9px;
+cursor:pointer
 }
 
-.desktop-nav{
+.desktop{
 display:none;
+gap:3px
+}
+
+.desktop button{
+border:0;
+background:transparent;
+color:white;
+padding:9px 11px;
+border-radius:8px;
+cursor:pointer
+}
+
+.desktop button:hover{
+background:rgba(255,255,255,.12)
 }
 
 .mobile-menu{
 display:none;
-background:var(--dark);
-padding:10px 20px 16px;
+padding:8px 20px 15px;
+background:var(--dark)
 }
 
 .mobile-menu.open{display:block}
@@ -93,417 +105,401 @@ color:white;
 padding:12px;
 margin:5px 0;
 border-radius:8px;
-text-align:left;
-cursor:pointer;
+text-align:left
 }
 
 main{
 max-width:1100px;
 margin:auto;
-padding:20px;
+padding:20px
 }
 
 .page{display:none}
 .page.active{display:block}
 
 .hero{
-background:
-linear-gradient(rgba(6,61,40,.92),rgba(11,93,59,.92)),
-radial-gradient(circle at top,#2b8961,#063d28);
+background:linear-gradient(135deg,var(--dark),var(--green));
 color:white;
-border-radius:24px;
-padding:48px 25px;
+padding:48px 22px;
+border-radius:23px;
 text-align:center;
-margin:4px 0 22px;
 box-shadow:var(--shadow);
+margin-bottom:20px
 }
 
-.moon{
-font-size:58px;
-margin-bottom:5px;
-}
+.moon{font-size:55px}
 
 .hero h1{
 font-size:38px;
-margin-bottom:8px;
+margin:5px 0
 }
 
-.hero .tagline{
+.hero h2{
 font-size:18px;
-color:#e5f1eb;
-margin-bottom:22px;
+font-weight:normal;
+color:#e2eee8;
+margin-bottom:18px
 }
 
 .hero p{
 max-width:650px;
-margin:0 auto 24px;
-color:#dcece4;
+margin:auto auto 22px;
+color:#dbeae3
 }
 
 .primary{
 background:var(--gold);
 border:0;
-color:#18251e;
-font-weight:700;
-padding:14px 24px;
-border-radius:11px;
-cursor:pointer;
-font-size:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.12);
+color:#18241d;
+font-weight:bold;
+padding:13px 22px;
+border-radius:10px;
+cursor:pointer
 }
 
-.primary:hover{transform:translateY(-1px)}
-
-.lang-box{
+.lang{
 display:flex;
 justify-content:center;
 gap:8px;
-margin:16px 0 24px;
+margin:16px 0 25px
 }
 
-.lang-btn{
-background:white;
+.lang button{
 border:1px solid var(--border);
-padding:9px 17px;
+background:white;
+color:var(--green);
+padding:8px 16px;
 border-radius:22px;
-cursor:pointer;
-color:var(--green);
-font-weight:600;
+cursor:pointer
 }
 
-.lang-btn.active{
+.lang button.active{
 background:var(--green);
-color:white;
-border-color:var(--green);
+color:white
 }
 
-.section-heading{
+.heading{
 text-align:center;
-margin:26px 0 18px;
+margin:25px 0 17px
 }
 
-.section-heading h2{
-color:var(--green);
-font-size:25px;
+.heading h2{
+color:var(--green)
 }
 
-.section-heading p{color:var(--muted)}
+.heading p{color:var(--muted)}
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:17px;
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+gap:16px
 }
 
 .card{
 background:white;
 border:1px solid var(--border);
-border-radius:17px;
-padding:23px;
+padding:22px;
+border-radius:16px;
 box-shadow:var(--shadow);
 cursor:pointer;
-transition:.2s;
+transition:.2s
 }
 
 .card:hover{transform:translateY(-3px)}
 
-.card-icon{
-font-size:35px;
-margin-bottom:8px;
+.icon{
+font-size:34px;
+margin-bottom:7px
 }
 
-.card h3{
-color:var(--green);
-margin-bottom:6px;
-}
-
+.card h3{color:var(--green)}
 .card p{color:var(--muted);font-size:14px}
 
 .lesson{
 background:white;
-border-radius:18px;
-padding:28px;
-box-shadow:var(--shadow);
-margin-bottom:20px;
 border:1px solid var(--border);
+border-radius:18px;
+padding:27px;
+box-shadow:var(--shadow);
+margin-bottom:20px
 }
 
-.lesson h1,
-.lesson h2{
+.lesson h1,.lesson h2{
 color:var(--green);
-margin-bottom:15px;
+margin-bottom:15px
 }
 
 .lesson h3{
 color:var(--dark);
-margin:22px 0 9px;
+margin:22px 0 9px
 }
 
 .lesson p{margin-bottom:12px}
 
 .back{
 border:0;
-background:#e7efe9;
+background:#e6efe9;
 color:var(--green);
-font-weight:700;
+font-weight:bold;
 padding:10px 16px;
 border-radius:9px;
 cursor:pointer;
-margin-bottom:16px;
-}
-
-.info{
-background:#f5f8f6;
-border-left:4px solid var(--green);
-padding:15px;
-border-radius:6px;
-margin:14px 0;
-}
-
-.arabic{
-direction:rtl;
-text-align:center;
-font-size:30px;
-line-height:2;
-background:var(--cream);
-border-radius:13px;
-padding:20px 12px;
-margin:15px 0;
-font-family:"Times New Roman",serif;
-}
-
-.translit{
-background:#f3f7f4;
-padding:14px;
-border-radius:10px;
-margin:10px 0;
-font-style:italic;
-}
-
-.meaning{
-background:#fafafa;
-border:1px solid var(--border);
-padding:14px;
-border-radius:10px;
-margin:10px 0;
-}
-
-.urdu{
-direction:rtl;
-text-align:right;
-font-size:18px;
-}
-
-.step{
-display:flex;
-gap:14px;
-background:#fffdf5;
-border:1px solid #eee6ca;
-padding:16px;
-border-radius:12px;
-margin:12px 0;
-}
-
-.step-num{
-min-width:34px;
-height:34px;
-background:var(--green);
-color:white;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-}
-
-.step-content strong{
-color:var(--green);
-}
-
-.dua{
-background:white;
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
-margin:15px 0;
-box-shadow:0 4px 15px rgba(0,0,0,.04);
-}
-
-.dua h3{margin-top:0}
-
-.audio-btn{
-background:#e7f1eb;
-border:0;
-color:var(--green);
-padding:10px 15px;
-border-radius:9px;
-font-weight:bold;
-cursor:pointer;
-margin-top:8px;
-}
-
-.quiz{
-background:white;
-padding:25px;
-border-radius:18px;
-box-shadow:var(--shadow);
-border:1px solid var(--border);
-}
-
-.quiz-question{
-font-size:19px;
-font-weight:bold;
-margin:18px 0;
-}
-
-.option{
-width:100%;
-padding:14px;
-margin:7px 0;
-background:#f3f7f4;
-border:1px solid #dce6df;
-border-radius:10px;
-text-align:left;
-cursor:pointer;
-font-size:15px;
-}
-
-.option:hover{
-background:#e5efe9;
-}
-
-.result{
-padding:14px;
-margin-top:15px;
-border-radius:10px;
-font-weight:bold;
-display:none;
-}
-
-.correct{
-display:block;
-background:#e2f3e8;
-color:#17643f;
-}
-
-.wrong{
-display:block;
-background:#fae8e6;
-color:#9d392d;
-}
-
-.quiz-next{
-margin-top:17px;
-}
-
-.progress{
-height:8px;
-background:#e5ebe7;
-border-radius:10px;
-overflow:hidden;
-margin:15px 0;
-}
-
-.progress-bar{
-height:100%;
-width:0%;
-background:var(--green);
-transition:.3s;
+margin-bottom:16px
 }
 
 .badge{
 display:inline-block;
-background:#edf4ef;
+background:#edf5ef;
 color:var(--green);
 padding:5px 10px;
 border-radius:20px;
 font-size:12px;
 font-weight:bold;
-margin-bottom:10px;
+margin-bottom:9px
 }
+
+.info{
+background:#f4f8f5;
+border-left:4px solid var(--green);
+padding:15px;
+border-radius:6px;
+margin:15px 0
+}
+
+.arabic{
+direction:rtl;
+text-align:center;
+font-family:"Times New Roman",serif;
+font-size:30px;
+line-height:2;
+background:var(--cream);
+padding:18px 10px;
+border-radius:12px;
+margin:14px 0
+}
+
+.translit{
+background:#f4f7f5;
+padding:13px;
+border-radius:9px;
+margin:9px 0;
+font-style:italic
+}
+
+.meaning{
+background:#fafafa;
+border:1px solid var(--border);
+padding:13px;
+border-radius:9px;
+margin:9px 0
+}
+
+.urdu{
+direction:rtl;
+text-align:right;
+font-size:18px
+}
+
+.step{
+display:flex;
+gap:13px;
+background:#fffdf5;
+border:1px solid #eee5c8;
+padding:15px;
+border-radius:11px;
+margin:11px 0
+}
+
+.num{
+min-width:34px;
+height:34px;
+border-radius:50%;
+background:var(--green);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold
+}
+
+.step strong{color:var(--green)}
+
+.prayer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:12px;
+margin:15px 0
+}
+
+.prayer{
+background:#f5f8f6;
+border:1px solid var(--border);
+border-radius:12px;
+padding:15px;
+text-align:center
+}
+
+.prayer strong{
+display:block;
+color:var(--green);
+font-size:18px
+}
+
+.progress{
+height:9px;
+background:#e5ebe7;
+border-radius:20px;
+overflow:hidden;
+margin:15px 0
+}
+
+.progress-bar{
+height:100%;
+background:var(--green);
+width:0;
+transition:.3s
+}
+
+.lesson-list{
+display:grid;
+gap:10px
+}
+
+.lesson-btn{
+background:#f4f8f5;
+border:1px solid var(--border);
+border-radius:11px;
+padding:15px;
+text-align:left;
+cursor:pointer;
+color:var(--text)
+}
+
+.lesson-btn:hover{
+background:#e8f1eb
+}
+
+.lesson-btn strong{
+color:var(--green)
+}
+
+.phrase{
+background:white;
+border:1px solid var(--border);
+border-radius:14px;
+padding:18px;
+margin:14px 0
+}
+
+.phrase h3{margin-top:0}
+
+.dua{
+background:white;
+border:1px solid var(--border);
+border-radius:15px;
+padding:19px;
+margin:14px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.04)
+}
+
+.quiz{
+background:white;
+border:1px solid var(--border);
+padding:25px;
+border-radius:18px;
+box-shadow:var(--shadow)
+}
+
+.question{
+font-size:19px;
+font-weight:bold;
+margin:18px 0
+}
+
+.option{
+display:block;
+width:100%;
+padding:13px;
+margin:8px 0;
+border:1px solid var(--border);
+background:#f3f7f5;
+border-radius:9px;
+text-align:left;
+cursor:pointer
+}
+
+.option:hover{background:#e5efe9}
+
+.result{
+display:none;
+padding:13px;
+margin-top:14px;
+border-radius:9px;
+font-weight:bold
+}
+
+.result.show{display:block}
+.correct{background:#e2f3e8;color:#17643f}
+.wrong{background:#fbe8e5;color:#9b392d}
+
+.hide{display:none!important}
 
 footer{
 background:var(--dark);
-color:#dbe9e1;
+color:#dbe9e2;
 text-align:center;
-padding:30px 20px;
-margin-top:30px;
+padding:28px 20px;
+margin-top:30px
 }
 
-footer .small{
-color:#b8cec2;
+.small{
 font-size:13px;
-margin-top:7px;
+color:#b9cec2;
+margin-top:7px
 }
 
-.bottom-nav{
+.bottom{
 position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:67px;
+height:68px;
 background:white;
 border-top:1px solid var(--border);
 display:flex;
 justify-content:space-around;
 align-items:center;
 z-index:999;
-box-shadow:0 -4px 18px rgba(0,0,0,.08);
+box-shadow:0 -4px 18px rgba(0,0,0,.08)
 }
 
-.bottom-nav button{
+.bottom button{
 border:0;
 background:none;
 color:#68766f;
 font-size:11px;
-cursor:pointer;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:3px;
+cursor:pointer
 }
 
-.bottom-nav button span{
-font-size:21px;
+.bottom span{
+display:block;
+font-size:21px
 }
 
-.bottom-nav button.active{
+.bottom .active{
 color:var(--green);
-font-weight:bold;
+font-weight:bold
 }
-
-.hide{display:none!important}
 
 @media(min-width:760px){
 
 body{padding-bottom:0}
 
-.menu-btn{display:none}
+.menu{display:none}
 
-.desktop-nav{
-display:flex;
-gap:4px;
-}
+.desktop{display:flex}
 
-.desktop-nav button{
-border:0;
-background:transparent;
-color:white;
-padding:10px 11px;
-border-radius:8px;
-cursor:pointer;
-font-size:13px;
-}
-
-.desktop-nav button:hover{
-background:rgba(255,255,255,.12);
-}
-
-.mobile-menu{display:none!important}
-
-.bottom-nav{display:none}
-
-.hero{padding:60px 30px}
+.bottom{display:none}
 
 }
 
@@ -512,39 +508,26 @@ background:rgba(255,255,255,.12);
 main{padding:14px}
 
 .hero{
-padding:38px 18px;
-border-radius:19px;
+padding:38px 17px;
+border-radius:19px
 }
 
 .hero h1{font-size:30px}
 
-.hero .tagline{font-size:16px}
+.lesson{padding:20px}
 
-.lesson{
-padding:20px;
-border-radius:15px;
-}
-
-.arabic{
-font-size:25px;
-}
+.arabic{font-size:25px}
 
 .cards{
 grid-template-columns:1fr 1fr;
-gap:12px;
+gap:11px
 }
 
-.card{
-padding:17px;
-}
-
-.card-icon{font-size:29px}
+.card{padding:16px}
 
 .card h3{font-size:16px}
 
 .card p{font-size:13px}
-
-.urdu{font-size:17px}
 
 }
 
@@ -560,24 +543,26 @@ padding:17px;
 
 <header>
 
-<div class="header-inner">
+<div class="header">
 
-<div class="logo">🌙 My First <span>Islam</span></div>
+<div class="logo">
+🌙 My First <span>Islam</span>
+</div>
 
-<nav class="desktop-nav">
+<nav class="desktop">
 <button onclick="showPage('home')">Home</button>
-<button onclick="showPage('start')">Start Here</button>
+<button onclick="showPage('start')">Start</button>
 <button onclick="showPage('salah')">Salah</button>
 <button onclick="showPage('wudu')">Wudu</button>
 <button onclick="showPage('duas')">Duas</button>
 <button onclick="showPage('quiz')">Quiz</button>
 </nav>
 
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<button class="menu" onclick="toggleMenu()">☰</button>
 
 </div>
 
-<div class="mobile-menu" id="mobileMenu">
+<div id="mobileMenu" class="mobile-menu">
 <button onclick="showPage('home')">🏠 Home</button>
 <button onclick="showPage('start')">🌱 Start Here</button>
 <button onclick="showPage('salah')">🕌 Learn Salah</button>
@@ -601,11 +586,11 @@ padding:17px;
 
 <h1>My First Islam</h1>
 
-<div class="tagline">Learn Islam step by step</div>
+<h2>Learn Islam step by step</h2>
 
 <p>
-A simple learning journey for new Muslims and anyone who wants
-to understand the basics of Islam.
+A simple learning journey for new Muslims and beginners.
+Learn the foundations of Islam, Salah, Wudu and daily Duas.
 </p>
 
 <button class="primary" onclick="showPage('start')">
@@ -614,56 +599,53 @@ START LEARNING
 
 </div>
 
+<div class="lang">
 
-<div class="lang-box">
-
-<button id="englishBtn" class="lang-btn active" onclick="setLanguage('en')">
+<button id="enBtn" class="active" onclick="language('en')">
 🇬🇧 English
 </button>
 
-<button id="urduBtn" class="lang-btn" onclick="setLanguage('ur')">
+<button id="urBtn" onclick="language('ur')">
 🇵🇰 اردو
 </button>
 
 </div>
 
-
-<div class="section-heading">
+<div class="heading">
 <h2>Begin Your Journey</h2>
-<p>Choose your first lesson</p>
+<p>Choose what you want to learn.</p>
 </div>
-
 
 <div class="cards">
 
 <div class="card" onclick="showPage('start')">
-<div class="card-icon">🌱</div>
+<div class="icon">🌱</div>
 <h3>Start Here</h3>
-<p>Learn the foundations of Islam.</p>
+<p>Learn the basic foundations of Islam.</p>
 </div>
 
 <div class="card" onclick="showPage('salah')">
-<div class="card-icon">🕌</div>
+<div class="icon">🕌</div>
 <h3>Learn Salah</h3>
-<p>Learn the prayer step by step.</p>
+<p>Learn prayer step by step.</p>
 </div>
 
 <div class="card" onclick="showPage('wudu')">
-<div class="card-icon">💧</div>
+<div class="icon">💧</div>
 <h3>Learn Wudu</h3>
 <p>Learn purification before prayer.</p>
 </div>
 
 <div class="card" onclick="showPage('duas')">
-<div class="card-icon">🤲</div>
+<div class="icon">🤲</div>
 <h3>Daily Duas</h3>
-<p>Learn useful daily supplications.</p>
+<p>Learn useful everyday supplications.</p>
 </div>
 
 <div class="card" onclick="showPage('quiz')">
-<div class="card-icon">🧠</div>
-<h3>Islamic Quiz</h3>
-<p>Test your beginner knowledge.</p>
+<div class="icon">🧠</div>
+<h3>Quiz</h3>
+<p>Test your Islamic knowledge.</p>
 </div>
 
 </div>
@@ -671,7 +653,7 @@ START LEARNING
 </section>
 
 
-<!-- START HERE -->
+<!-- START -->
 
 <section id="start" class="page">
 
@@ -679,24 +661,22 @@ START LEARNING
 
 <div class="lesson">
 
-<span class="badge">LESSON 1</span>
+<span class="badge">FOUNDATION</span>
 
 <h2>🌱 Start Here</h2>
 
 <p>
 Welcome to your journey of learning Islam. You do not need to learn
-everything in one day. Start with the foundations and continue step by step.
+everything at once. Begin with the foundations and continue step by step.
 </p>
-
 
 <h3>What is Islam?</h3>
 
 <p>
 Islam is submission to Allah and obedience to His guidance.
-Muslims worship Allah alone and follow the guidance brought by His Messenger
-Muhammad ﷺ.
+Muslims worship Allah alone and follow the guidance brought by
+His Messenger Muhammad ﷺ.
 </p>
-
 
 <h3>Who is Allah?</h3>
 
@@ -715,12 +695,11 @@ Allah is the One worthy of worship.
 اللہ ہی وہ واحد ذات ہے جو عبادت کے لائق ہے۔
 </div>
 
-
 <h3>The Shahadah</h3>
 
 <div class="arabic">
-أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ،
-وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ
+أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ،
+وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ
 </div>
 
 <div class="translit">
@@ -740,61 +719,42 @@ and I testify that Muhammad is the Messenger of Allah.
 اور میں گواہی دیتا ہوں کہ محمد ﷺ اللہ کے رسول ہیں۔
 </div>
 
-
-<h3>The Five Pillars of Islam</h3>
+<h3>The Five Pillars</h3>
 
 <div class="step">
-<div class="step-num">1</div>
-<div class="step-content">
-<strong>Shahadah</strong><br>
-The testimony of faith.
-</div>
+<div class="num">1</div>
+<div><strong>Shahadah</strong><br>Testimony of faith.</div>
 </div>
 
 <div class="step">
-<div class="step-num">2</div>
-<div class="step-content">
-<strong>Salah</strong><br>
-The five daily prayers.
-</div>
+<div class="num">2</div>
+<div><strong>Salah</strong><br>The five daily prayers.</div>
 </div>
 
 <div class="step">
-<div class="step-num">3</div>
-<div class="step-content">
-<strong>Zakat</strong><br>
-Obligatory charity for those who meet its conditions.
-</div>
+<div class="num">3</div>
+<div><strong>Zakat</strong><br>Obligatory charity for those who meet its conditions.</div>
 </div>
 
 <div class="step">
-<div class="step-num">4</div>
-<div class="step-content">
-<strong>Sawm</strong><br>
-Fasting during Ramadan.
-</div>
+<div class="num">4</div>
+<div><strong>Sawm</strong><br>Fasting during Ramadan.</div>
 </div>
 
 <div class="step">
-<div class="step-num">5</div>
-<div class="step-content">
-<strong>Hajj</strong><br>
-Pilgrimage to Makkah for those who are able.
+<div class="num">5</div>
+<div><strong>Hajj</strong><br>Pilgrimage to Makkah for those who are able.</div>
 </div>
-</div>
-
 
 <h3>The Six Articles of Faith</h3>
 
-<p>Muslims believe in:</p>
-
 <div class="info">
-1. Allah<br>
+1. Belief in Allah<br>
 2. His angels<br>
 3. His books<br>
 4. His messengers<br>
 5. The Last Day<br>
-6. Divine decree (Al-Qadar), its good and its difficult aspects.
+6. Divine decree (Al-Qadar)
 </div>
 
 </div>
@@ -810,141 +770,106 @@ Pilgrimage to Makkah for those who are able.
 
 <div class="lesson">
 
-<span class="badge">LESSON 2</span>
+<span class="badge">SALAah COURSE</span>
 
-<h2>🕌 Learn Salah</h2>
+<h2>🕌 Learn Salah From Zero</h2>
 
 <p>
-Salah is one of the Five Pillars of Islam. Muslims perform five obligatory
-daily prayers.
+Salah is one of the Five Pillars of Islam. Muslims perform five
+obligatory daily prayers.
+</p>
+
+<div class="progress">
+<div id="salahProgress" class="progress-bar"></div>
+</div>
+
+<p>
+<strong id="progressText">0 of 8 lessons completed</strong>
 </p>
 
 
-<h3>Before Salah</h3>
+<h3>The Five Daily Prayers</h3>
 
-<div class="step">
-<div class="step-num">1</div>
-<div class="step-content">
-<strong>Purification</strong><br>
-Perform Wudu when it is required.
-</div>
-</div>
+<div class="prayer-grid">
 
-<div class="step">
-<div class="step-num">2</div>
-<div class="step-content">
-<strong>Clothing</strong><br>
-Wear clothing that fulfills the requirements for prayer.
-</div>
+<div class="prayer">
+<strong>Fajr</strong>
+2 Fard
 </div>
 
-<div class="step">
-<div class="step-num">3</div>
-<div class="step-content">
-<strong>Place</strong><br>
-Pray in a clean place.
-</div>
+<div class="prayer">
+<strong>Dhuhr</strong>
+4 Fard
 </div>
 
-<div class="step">
-<div class="step-num">4</div>
-<div class="step-content">
-<strong>Qiblah</strong><br>
-Face toward the Ka'bah in Makkah.
-</div>
+<div class="prayer">
+<strong>Asr</strong>
+4 Fard
 </div>
 
-<div class="step">
-<div class="step-num">5</div>
-<div class="step-content">
-<strong>Intention</strong><br>
-Have the intention in your heart for the prayer you are performing.
-</div>
+<div class="prayer">
+<strong>Maghrib</strong>
+3 Fard
 </div>
 
-
-<h3>Takbeer</h3>
-
-<div class="arabic">
-اللَّهُ أَكْبَرُ
-</div>
-
-<div class="translit">
-<strong>Allahu Akbar</strong>
-</div>
-
-<div class="meaning">
-<strong>English:</strong> Allah is the Greatest.
-</div>
-
-<div class="meaning urdu">
-<strong>اردو:</strong> اللہ سب سے بڑا ہے۔
-</div>
-
-
-<h3>Ruku</h3>
-
-<div class="arabic">
-سُبْحَانَ رَبِّيَ الْعَظِيمِ
-</div>
-
-<div class="translit">
-<strong>Subhana Rabbiyal-'Azim</strong>
-</div>
-
-<div class="meaning">
-<strong>English:</strong> Glory is to my Lord, the Most Great.
-</div>
-
-<div class="meaning urdu">
-<strong>اردو:</strong> پاک ہے میرا رب، عظمت والا۔
-</div>
-
-
-<h3>Sujood</h3>
-
-<div class="arabic">
-سُبْحَانَ رَبِّيَ الْأَعْلَى
-</div>
-
-<div class="translit">
-<strong>Subhana Rabbiyal-A'la</strong>
-</div>
-
-<div class="meaning">
-<strong>English:</strong> Glory is to my Lord, the Most High.
-</div>
-
-<div class="meaning urdu">
-<strong>اردو:</strong> پاک ہے میرا رب، سب سے بلند۔
-</div>
-
-
-<h3>Salam — Ending the Prayer</h3>
-
-<div class="arabic">
-السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ
-</div>
-
-<div class="translit">
-<strong>Assalamu 'alaykum wa rahmatullah</strong>
-</div>
-
-<div class="meaning">
-<strong>English:</strong> Peace and the mercy of Allah be upon you.
-</div>
-
-<div class="meaning urdu">
-<strong>اردو:</strong> تم پر سلامتی اور اللہ کی رحمت ہو۔
-</div>
-
-
-<div class="info">
-<strong>Beginner tip:</strong> Learn the prayer gradually. Start by learning
-the movements and the words, then practice until you become comfortable.
+<div class="prayer">
+<strong>Isha</strong>
+4 Fard
 </div>
 
 </div>
+
+
+<h3>Beginner Salah Course</h3>
+
+<div class="lesson-list">
+
+<button class="lesson-btn" onclick="salahLesson(1)">
+<strong>Lesson 1 — Preparing for Salah</strong><br>
+Wudu, clothing, place, Qiblah and intention
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(2)">
+<strong>Lesson 2 — Starting Salah</strong><br>
+Takbeer and standing
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(3)">
+<strong>Lesson 3 — Qiyam</strong><br>
+Recitation while standing
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(4)">
+<strong>Lesson 4 — Ruku</strong><br>
+The bowing position
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(5)">
+<strong>Lesson 5 — Rising & Sujood</strong><br>
+Qawmah and prostration
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(6)">
+<strong>Lesson 6 — Between the Two Sujoods</strong><br>
+Jalsah and second prostration
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(7)">
+<strong>Lesson 7 — Tashahhud</strong><br>
+The sitting portion of Salah
+</button>
+
+<button class="lesson-btn" onclick="salahLesson(8)">
+<strong>Lesson 8 — Ending Salah</strong><br>
+Salam and completing the prayer
+</button>
+
+</div>
+
+</div>
+
+
+<div id="salahContent" class="lesson hide"></div>
 
 </section>
 
@@ -957,93 +882,64 @@ the movements and the words, then practice until you become comfortable.
 
 <div class="lesson">
 
-<span class="badge">LESSON 3</span>
+<span class="badge">WUDU</span>
 
 <h2>💧 Learn Wudu</h2>
 
 <p>
-Wudu is the ritual purification performed before prayer when purification
+Wudu is ritual purification performed before Salah when purification
 is required.
 </p>
 
-
 <div class="step">
-<div class="step-num">1</div>
-<div class="step-content">
-<strong>Intention</strong><br>
-Make the intention for purification in your heart.
-</div>
+<div class="num">1</div>
+<div><strong>Intention</strong><br>Make the intention for purification in your heart.</div>
 </div>
 
 <div class="step">
-<div class="step-num">2</div>
-<div class="step-content">
-<strong>Wash the hands</strong><br>
-Wash both hands thoroughly.
-</div>
+<div class="num">2</div>
+<div><strong>Hands</strong><br>Wash both hands thoroughly.</div>
 </div>
 
 <div class="step">
-<div class="step-num">3</div>
-<div class="step-content">
-<strong>Rinse the mouth</strong><br>
-Rinse the mouth with water.
-</div>
+<div class="num">3</div>
+<div><strong>Mouth</strong><br>Rinse the mouth.</div>
 </div>
 
 <div class="step">
-<div class="step-num">4</div>
-<div class="step-content">
-<strong>Clean the nose</strong><br>
-Clean the nose with water.
-</div>
+<div class="num">4</div>
+<div><strong>Nose</strong><br>Clean the nose with water.</div>
 </div>
 
 <div class="step">
-<div class="step-num">5</div>
-<div class="step-content">
-<strong>Wash the face</strong><br>
-Wash the whole face.
-</div>
+<div class="num">5</div>
+<div><strong>Face</strong><br>Wash the whole face.</div>
 </div>
 
 <div class="step">
-<div class="step-num">6</div>
-<div class="step-content">
-<strong>Wash the arms</strong><br>
-Wash the arms including the elbows.
-</div>
+<div class="num">6</div>
+<div><strong>Arms</strong><br>Wash the arms including the elbows.</div>
 </div>
 
 <div class="step">
-<div class="step-num">7</div>
-<div class="step-content">
-<strong>Wipe the head</strong><br>
-Wipe the head with wet hands.
-</div>
+<div class="num">7</div>
+<div><strong>Head</strong><br>Wipe the head with wet hands.</div>
 </div>
 
 <div class="step">
-<div class="step-num">8</div>
-<div class="step-content">
-<strong>Wipe the ears</strong><br>
-Wipe the ears.
-</div>
+<div class="num">8</div>
+<div><strong>Ears</strong><br>Wipe the ears.</div>
 </div>
 
 <div class="step">
-<div class="step-num">9</div>
-<div class="step-content">
-<strong>Wash the feet</strong><br>
-Wash both feet including the ankles.
+<div class="num">9</div>
+<div><strong>Feet</strong><br>Wash both feet including the ankles.</div>
 </div>
-</div>
-
 
 <div class="info">
-<strong>Important:</strong> Some details of Wudu have differences among
-recognized schools of Islamic jurisprudence. The app will later include
-more detailed explanations for beginners.
+<strong>Note:</strong> Some details of Wudu differ among recognized
+schools of Islamic jurisprudence. More detailed explanations can be
+added later.
 </div>
 
 </div>
@@ -1059,13 +955,9 @@ more detailed explanations for beginners.
 
 <div class="lesson">
 
-<span class="badge">LESSON 4</span>
+<span class="badge">DAILY DUAS</span>
 
 <h2>🤲 Daily Duas</h2>
-
-<p>
-Start with a few simple supplications and learn their meanings.
-</p>
 
 
 <div class="dua">
@@ -1156,13 +1048,13 @@ Bismillah, tawakkaltu 'alallah, la hawla wa la quwwata illa billah
 </div>
 
 <div class="meaning">
-<strong>English:</strong>
+<strong>English:</strong><br>
 In the name of Allah. I place my trust in Allah.
 There is no power and no strength except with Allah.
 </div>
 
 <div class="meaning urdu">
-<strong>اردو:</strong>
+<strong>اردو:</strong><br>
 اللہ کے نام سے۔ میں نے اللہ پر بھروسہ کیا۔
 اللہ کے سوا نہ کوئی طاقت ہے نہ قوت۔
 </div>
@@ -1187,16 +1079,16 @@ There is no power and no strength except with Allah.
 <h2>🧠 Test Your Knowledge</h2>
 
 <div class="progress">
-<div id="progressBar" class="progress-bar"></div>
+<div id="quizProgress" class="progress-bar"></div>
 </div>
 
-<div id="question" class="quiz-question"></div>
+<div id="question" class="question"></div>
 
 <div id="options"></div>
 
 <div id="result" class="result"></div>
 
-<button id="nextButton" class="primary quiz-next hide" onclick="nextQuestion()">
+<button id="next" class="primary hide" onclick="nextQuiz()">
 NEXT QUESTION
 </button>
 
@@ -1217,40 +1109,29 @@ NEXT QUESTION
 A simple educational project for new Muslims and beginners.
 </p>
 
-<p class="small">
-Islamic content will continue to be expanded and reviewed.
-</p>
-
 </footer>
 
 
-<!-- MOBILE NAVIGATION -->
+<div class="bottom">
 
-<div class="bottom-nav">
-
-<button id="navHome" class="active" onclick="showPage('home')">
-<span>🏠</span>
-Home
+<button id="bHome" class="active" onclick="showPage('home')">
+<span>🏠</span>Home
 </button>
 
-<button id="navStart" onclick="showPage('start')">
-<span>🌱</span>
-Start
+<button id="bStart" onclick="showPage('start')">
+<span>🌱</span>Start
 </button>
 
-<button id="navSalah" onclick="showPage('salah')">
-<span>🕌</span>
-Salah
+<button id="bSalah" onclick="showPage('salah')">
+<span>🕌</span>Salah
 </button>
 
-<button id="navDuas" onclick="showPage('duas')">
-<span>🤲</span>
-Duas
+<button id="bDuas" onclick="showPage('duas')">
+<span>🤲</span>Duas
 </button>
 
-<button id="navQuiz" onclick="showPage('quiz')">
-<span>🧠</span>
-Quiz
+<button id="bQuiz" onclick="showPage('quiz')">
+<span>🧠</span>Quiz
 </button>
 
 </div>
@@ -1258,26 +1139,22 @@ Quiz
 
 <script>
 
-/* ------------------------------
-   PAGE NAVIGATION
------------------------------- */
+/* =========================
+PAGE NAVIGATION
+========================= */
 
 function toggleMenu(){
 document.getElementById("mobileMenu").classList.toggle("open");
 }
 
 
-function showPage(pageId){
+function showPage(id){
 
 document.querySelectorAll(".page").forEach(function(page){
 page.classList.remove("active");
 });
 
-const page=document.getElementById(pageId);
-
-if(page){
-page.classList.add("active");
-}
+document.getElementById(id).classList.add("active");
 
 document.getElementById("mobileMenu").classList.remove("open");
 
@@ -1286,259 +1163,627 @@ top:0,
 behavior:"smooth"
 });
 
-updateBottomNavigation(pageId);
-}
-
-
-/* ------------------------------
-   MOBILE NAVIGATION
------------------------------- */
-
-function updateBottomNavigation(pageId){
-
-document.querySelectorAll(".bottom-nav button").forEach(function(btn){
-btn.classList.remove("active");
+document.querySelectorAll(".bottom button").forEach(function(button){
+button.classList.remove("active");
 });
 
-const map={
-home:"navHome",
-start:"navStart",
-salah:"navSalah",
-duas:"navDuas",
-quiz:"navQuiz"
+const nav={
+home:"bHome",
+start:"bStart",
+salah:"bSalah",
+duas:"bDuas",
+quiz:"bQuiz"
 };
 
-if(map[pageId]){
-document.getElementById(map[pageId]).classList.add("active");
+if(nav[id]){
+document.getElementById(nav[id]).classList.add("active");
 }
 
 }
 
 
-/* ------------------------------
-   LANGUAGE
------------------------------- */
+/* =========================
+LANGUAGE
+========================= */
 
-function setLanguage(language){
+function language(lang){
 
-const english=document.getElementById("englishBtn");
-const urdu=document.getElementById("urduBtn");
+if(lang==="ur"){
 
-if(language==="ur"){
+document.getElementById("urBtn").classList.add("active");
+document.getElementById("enBtn").classList.remove("active");
 
-urdu.classList.add("active");
-english.classList.remove("active");
-
-document.documentElement.lang="ur";
-
-alert(
-"اردو موڈ منتخب کیا گیا ہے۔ اگلے مرحلے میں ہم ایپ کے تمام انگریزی متن کا مکمل اردو ترجمہ شامل کریں گے۔"
-);
+alert("اردو انٹرفیس اگلے مرحلے میں مکمل طور پر شامل کیا جائے گا۔");
 
 }else{
 
-english.classList.add("active");
-urdu.classList.remove("active");
-
-document.documentElement.lang="en";
-
-alert("English mode selected.");
+document.getElementById("enBtn").classList.add("active");
+document.getElementById("urBtn").classList.remove("active");
 
 }
 
 }
 
 
-/* ------------------------------
-   QUIZ
------------------------------- */
+/* =========================
+SALAH COURSE
+========================= */
 
-const quizQuestions=[
+let completedLessons=[];
+
+
+const salahLessons={
+
+1:`
+<span class="badge">LESSON 1</span>
+<h2>Preparing for Salah</h2>
+
+<p>
+Before beginning Salah, a Muslim prepares physically and spiritually.
+</p>
+
+<div class="step">
+<div class="num">1</div>
+<div><strong>Purification</strong><br>
+Perform Wudu when required.</div>
+</div>
+
+<div class="step">
+<div class="num">2</div>
+<div><strong>Cleanliness</strong><br>
+Make sure your body, clothing and place of prayer are clean.</div>
+</div>
+
+<div class="step">
+<div class="num">3</div>
+<div><strong>Awrah</strong><br>
+Wear clothing that fulfills the requirements of Salah.</div>
+</div>
+
+<div class="step">
+<div class="num">4</div>
+<div><strong>Qiblah</strong><br>
+Face toward the Ka'bah in Makkah.</div>
+</div>
+
+<div class="step">
+<div class="num">5</div>
+<div><strong>Prayer time</strong><br>
+Perform each obligatory prayer within its prescribed time.</div>
+</div>
+
+<div class="step">
+<div class="num">6</div>
+<div><strong>Intention</strong><br>
+Have the intention in your heart for the prayer you are performing.</div>
+</div>
+
+<button class="primary" onclick="completeLesson(1)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+2:`
+<span class="badge">LESSON 2</span>
+<h2>Starting Salah</h2>
+
+<p>
+Stand facing the Qiblah and begin the prayer with Takbeer.
+</p>
+
+<div class="phrase">
+
+<h3>Takbeer</h3>
+
+<div class="arabic">
+اللَّهُ أَكْبَرُ
+</div>
+
+<div class="translit">
+<strong>Allahu Akbar</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+Allah is the Greatest.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+اللہ سب سے بڑا ہے۔
+</div>
+
+</div>
+
+<p>
+Raise the hands as taught in the prayer method you follow and enter
+the standing position.
+</p>
+
+<button class="primary" onclick="completeLesson(2)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+3:`
+<span class="badge">LESSON 3</span>
+<h2>Qiyam — Standing</h2>
+
+<p>
+During Qiyam, the worshipper stands and recites the required portions
+of the prayer.
+</p>
+
+<h3>Surah Al-Fatihah</h3>
+
+<div class="arabic">
+الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
+الرَّحْمَٰنِ الرَّحِيمِ<br>
+مَالِكِ يَوْمِ الدِّينِ<br>
+إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
+اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
+صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
+غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+</div>
+
+<div class="translit">
+<strong>Transliteration:</strong><br>
+Alhamdu lillahi Rabbil-'alamin.<br>
+Ar-Rahmanir-Rahim.<br>
+Maliki yawmid-din.<br>
+Iyyaka na'budu wa iyyaka nasta'in.<br>
+Ihdinas-siratal-mustaqim.<br>
+Siratal-ladhina an'amta 'alayhim.<br>
+Ghayril-maghdubi 'alayhim wa lad-dallin.
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+All praise is for Allah, Lord of the worlds.<br>
+The Most Merciful, the Especially Merciful.<br>
+Master of the Day of Judgment.<br>
+You alone we worship and You alone we ask for help.<br>
+Guide us to the straight path.<br>
+The path of those You have blessed, not those who earned Your anger,
+nor those who went astray.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+سب تعریفیں اللہ کے لیے ہیں جو تمام جہانوں کا رب ہے۔<br>
+نہایت مہربان، بہت رحم فرمانے والا۔<br>
+روزِ جزا کا مالک۔<br>
+ہم صرف تیری عبادت کرتے ہیں اور صرف تجھ ہی سے مدد مانگتے ہیں۔<br>
+ہمیں سیدھا راستہ دکھا۔<br>
+ان لوگوں کا راستہ جن پر تو نے انعام فرمایا،
+نہ ان کا جن پر غضب ہوا اور نہ گمراہوں کا۔
+</div>
+
+<button class="primary" onclick="completeLesson(3)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+4:`
+<span class="badge">LESSON 4</span>
+<h2>Ruku — Bowing</h2>
+
+<p>
+After the standing portion, the worshipper moves into Ruku.
+</p>
+
+<div class="phrase">
+
+<h3>Dhikr in Ruku</h3>
+
+<div class="arabic">
+سُبْحَانَ رَبِّيَ الْعَظِيمِ
+</div>
+
+<div class="translit">
+<strong>Subhana Rabbiyal-'Azim</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+Glory is to my Lord, the Most Great.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+پاک ہے میرا رب، عظمت والا۔
+</div>
+
+</div>
+
+<button class="primary" onclick="completeLesson(4)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+5:`
+<span class="badge">LESSON 5</span>
+<h2>Rising & Sujood</h2>
+
+<h3>Rising from Ruku</h3>
+
+<p>
+Rise from Ruku into the standing position.
+</p>
+
+<h3>Sujood</h3>
+
+<div class="phrase">
+
+<div class="arabic">
+سُبْحَانَ رَبِّيَ الْأَعْلَى
+</div>
+
+<div class="translit">
+<strong>Subhana Rabbiyal-A'la</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+Glory is to my Lord, the Most High.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+پاک ہے میرا رب، سب سے بلند۔
+</div>
+
+</div>
+
+<p>
+Sujood is one of the greatest positions of humility before Allah.
+</p>
+
+<button class="primary" onclick="completeLesson(5)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+6:`
+<span class="badge">LESSON 6</span>
+<h2>Between the Two Sujoods</h2>
+
+<p>
+After the first Sujood, sit briefly before performing the second Sujood.
+</p>
+
+<div class="phrase">
+
+<h3>A Common Supplication</h3>
+
+<div class="arabic">
+رَبِّ اغْفِرْ لِي
+</div>
+
+<div class="translit">
+<strong>Rabbighfir li</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+My Lord, forgive me.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+اے میرے رب! مجھے بخش دے۔
+</div>
+
+</div>
+
+<button class="primary" onclick="completeLesson(6)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+7:`
+<span class="badge">LESSON 7</span>
+<h2>Tashahhud</h2>
+
+<p>
+In the sitting portion of Salah, the worshipper recites Tashahhud.
+</p>
+
+<div class="arabic">
+التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ،
+السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ،
+السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ،
+أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ،
+وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ
+</div>
+
+<div class="translit">
+<strong>Transliteration:</strong><br>
+At-tahiyyatu lillahi was-salawatu wat-tayyibat.<br>
+As-salamu 'alayka ayyuhan-nabiyyu wa rahmatullahi wa barakatuh.<br>
+As-salamu 'alayna wa 'ala 'ibadillahis-salihin.<br>
+Ashhadu an la ilaha illallah, wa ashhadu anna Muhammadan 'abduhu wa rasuluh.
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+All greetings, prayers and good things are for Allah.
+Peace be upon you, O Prophet, and the mercy of Allah and His blessings.
+Peace be upon us and all the righteous servants of Allah.
+I testify that there is no deity worthy of worship except Allah,
+and I testify that Muhammad is His servant and Messenger.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+تمام قولی عبادتیں، نمازیں اور پاکیزہ چیزیں اللہ ہی کے لیے ہیں۔
+اے نبی! آپ پر سلام ہو اور اللہ کی رحمت اور اس کی برکتیں ہوں۔
+ہم پر اور اللہ کے تمام نیک بندوں پر سلام ہو۔
+میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبودِ برحق نہیں،
+اور میں گواہی دیتا ہوں کہ محمد ﷺ اس کے بندے اور رسول ہیں۔
+</div>
+
+<button class="primary" onclick="completeLesson(7)">
+MARK LESSON COMPLETE
+</button>
+`,
+
+8:`
+<span class="badge">LESSON 8</span>
+<h2>Ending Salah</h2>
+
+<p>
+The prayer is concluded with Salam.
+</p>
+
+<div class="phrase">
+
+<div class="arabic">
+السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ
+</div>
+
+<div class="translit">
+<strong>Assalamu 'alaykum wa rahmatullah</strong>
+</div>
+
+<div class="meaning">
+<strong>English:</strong><br>
+Peace and the mercy of Allah be upon you.
+</div>
+
+<div class="meaning urdu">
+<strong>اردو:</strong><br>
+تم پر سلامتی اور اللہ کی رحمت ہو۔
+</div>
+
+</div>
+
+<div class="info">
+<strong>Congratulations!</strong><br>
+You have completed the basic beginner Salah course.
+Continue practicing and learning the detailed rulings of Salah.
+</div>
+
+<button class="primary" onclick="completeLesson(8)">
+MARK LESSON COMPLETE
+</button>
+`
+
+};
+
+
+function salahLesson(number){
+
+const box=document.getElementById("salahContent");
+
+box.innerHTML=salahLessons[number];
+
+box.classList.remove("hide");
+
+box.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+function completeLesson(number){
+
+if(!completedLessons.includes(number)){
+completedLessons.push(number);
+}
+
+updateSalahProgress();
+
+alert("✅ Lesson completed!");
+
+}
+
+
+function updateSalahProgress(){
+
+const total=8;
+
+const done=completedLessons.length;
+
+document.getElementById("salahProgress").style.width=
+(done/total*100)+"%";
+
+document.getElementById("progressText").textContent=
+done+" of "+total+" lessons completed";
+
+}
+
+
+/* =========================
+QUIZ
+========================= */
+
+const questions=[
 
 {
-question:"Who is the One true God worthy of worship?",
-options:[
-"A. An angel",
-"B. Allah",
-"C. A prophet",
-"D. A human"
-],
-correct:1
+q:"How many obligatory daily prayers are there?",
+a:["Three","Four","Five","Seven"],
+c:2
 },
 
 {
-question:"How many obligatory daily prayers are there?",
-options:[
-"A. Three",
-"B. Four",
-"C. Five",
-"D. Seven"
-],
-correct:2
+q:"How many Fard rak'ahs are in Fajr?",
+a:["2","3","4","5"],
+c:0
 },
 
 {
-question:"What is the first pillar of Islam?",
-options:[
-"A. Zakat",
-"B. Hajj",
-"C. Sawm",
-"D. Shahadah"
-],
-correct:3
+q:"How many Fard rak'ahs are in Maghrib?",
+a:["2","3","4","5"],
+c:1
 },
 
 {
-question:"During which month do Muslims fast?",
-options:[
-"A. Ramadan",
-"B. Muharram",
-"C. Rajab",
-"D. Shawwal"
-],
-correct:0
+q:"Toward what direction do Muslims face during Salah?",
+a:["Madinah","Jerusalem","The Ka'bah in Makkah","Mount Uhud"],
+c:2
 },
 
 {
-question:"Toward what direction do Muslims face during Salah?",
-options:[
-"A. Madinah",
-"B. Jerusalem",
-"C. The Ka'bah in Makkah",
-"D. Mount Uhud"
-],
-correct:2
+q:"What is said to begin the prayer?",
+a:["Bismillah","Allahu Akbar","Astaghfirullah","Alhamdulillah"],
+c:1
 }
 
 ];
 
-let currentQuestion=0;
+let currentQuiz=0;
 let score=0;
 let answered=false;
 
 
-function loadQuestion(){
+function loadQuiz(){
 
-const q=quizQuestions[currentQuestion];
+const q=questions[currentQuiz];
 
 document.getElementById("question").textContent=
-(currentQuestion+1)+". "+q.question;
+(currentQuiz+1)+". "+q.q;
 
-const optionsContainer=document.getElementById("options");
+const options=document.getElementById("options");
 
-optionsContainer.innerHTML="";
+options.innerHTML="";
 
-q.options.forEach(function(option,index){
+q.a.forEach(function(answer,index){
 
 const button=document.createElement("button");
 
 button.className="option";
-button.textContent=option;
+
+button.textContent=
+String.fromCharCode(65+index)+". "+answer;
 
 button.onclick=function(){
-checkAnswer(index);
+checkQuiz(index);
 };
 
-optionsContainer.appendChild(button);
+options.appendChild(button);
 
 });
 
-document.getElementById("result").className="result";
-document.getElementById("result").textContent="";
+const result=document.getElementById("result");
 
-document.getElementById("nextButton").classList.add("hide");
+result.className="result";
+result.textContent="";
 
-document.getElementById("progressBar").style.width=
-((currentQuestion)/quizQuestions.length*100)+"%";
+document.getElementById("next").classList.add("hide");
+
+document.getElementById("quizProgress").style.width=
+(currentQuiz/questions.length*100)+"%";
 
 answered=false;
+
 }
 
 
-function checkAnswer(selected){
+function checkQuiz(answer){
 
 if(answered)return;
 
 answered=true;
 
-const q=quizQuestions[currentQuestion];
+const q=questions[currentQuiz];
+
 const result=document.getElementById("result");
 
-if(selected===q.correct){
+if(answer===q.c){
 
 score++;
 
-result.className="result correct";
-result.textContent="✅ Correct! Well done.";
+result.className="result show correct";
+
+result.textContent="✅ Correct!";
 
 }else{
 
-result.className="result wrong";
+result.className="result show wrong";
+
 result.textContent=
-"❌ Not quite. The correct answer is "+q.options[q.correct];
+"❌ The correct answer is "+q.a[q.c];
 
 }
 
-document.getElementById("nextButton").classList.remove("hide");
+document.getElementById("next").classList.remove("hide");
 
-document.getElementById("progressBar").style.width=
-((currentQuestion+1)/quizQuestions.length*100)+"%";
+document.getElementById("quizProgress").style.width=
+((currentQuiz+1)/questions.length*100)+"%";
+
 }
 
 
-function nextQuestion(){
+function nextQuiz(){
 
-if(currentQuestion<quizQuestions.length-1){
+if(currentQuiz<questions.length-1){
 
-currentQuestion++;
-loadQuestion();
+currentQuiz++;
+
+loadQuiz();
 
 }else{
-
-showQuizResult();
-
-}
-
-}
-
-
-function showQuizResult(){
 
 document.getElementById("question").textContent=
 "🎉 Quiz Complete!";
 
 document.getElementById("options").innerHTML="";
 
-document.getElementById("result").className="result correct";
+document.getElementById("result").className=
+"result show correct";
 
 document.getElementById("result").textContent=
-"You scored "+score+" out of "+quizQuestions.length+". Keep learning and growing!";
+"You scored "+score+" out of "+questions.length+".";
 
-document.getElementById("nextButton").textContent="RESTART QUIZ";
+const button=document.getElementById("next");
 
-document.getElementById("nextButton").classList.remove("hide");
+button.classList.remove("hide");
 
-document.getElementById("nextButton").onclick=function(){
+button.textContent="RESTART QUIZ";
 
-currentQuestion=0;
+button.onclick=function(){
+
+currentQuiz=0;
 score=0;
 
-document.getElementById("nextButton").textContent="NEXT QUESTION";
+button.textContent="NEXT QUESTION";
+button.onclick=nextQuiz;
 
-document.getElementById("nextButton").onclick=nextQuestion;
-
-loadQuestion();
+loadQuiz();
 
 };
 
-document.getElementById("progressBar").style.width="100%";
+}
 
 }
 
 
 /* START QUIZ */
 
-loadQuestion();
+loadQuiz();
 
 </script>
 
