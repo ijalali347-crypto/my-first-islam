@@ -645,6 +645,15 @@ grid-template-columns:1fr;
 }
 
 }
+
+/* MULTILINGUAL UI */
+body.rtl{direction:rtl}
+body.rtl .mobile-menu button,body.rtl .lesson-btn,body.rtl .option{text-align:right}
+body.rtl .info,body.rtl .warning{border-left:0;border-right:4px solid var(--green)}
+body.rtl .warning{border-right-color:var(--gold)}
+body.rtl .translit,body.rtl .meaning{text-align:right}
+.lang select{border:1px solid var(--border);background:white;color:var(--green);padding:8px 12px;border-radius:22px;font-weight:bold;cursor:pointer}
+
 </style>
 </head>
 
@@ -721,15 +730,11 @@ START LEARNING
 
 
 <div class="lang">
-
-<button id="enBtn" class="active" onclick="language('en')">
-🇬🇧 English
-</button>
-
-<button id="urBtn" onclick="language('ur')">
-🇵🇰 اردو
-</button>
-
+<select id="languageSelect" onchange="language(this.value)" aria-label="Language">
+<option value="en">🇬🇧 English</option>
+<option value="ur">🇵🇰 اردو</option>
+<option value="fr">🇫🇷 Français</option>
+</select>
 </div>
 
 
@@ -1357,6 +1362,70 @@ A simple educational project for new Muslims and beginners.
 
 
 <script>
+
+
+/* =========================
+LANGUAGE SYSTEM
+English + Urdu + French
+Arabic and transliteration are preserved.
+========================= */
+const I18N={
+en:{
+home:"Home",start:"Start",salah:"Salah",wudu:"Wudu",duas:"Duas",quiz:"Quiz",
+startHere:"🌱 Start Here",learnSalah:"🕌 Learn Salah",learnWudu:"💧 Learn Wudu",dailyDuas:"🤲 Daily Duas",quizNav:"🧠 Quiz",back:"← Back",
+heroTitle:"My First Islam",heroSubtitle:"Learn Islam step by step",heroText:"A simple learning journey for new Muslims and beginners. Learn the foundations of Islam, Salah, Wudu and daily Duas.",startLearning:"START LEARNING",install:"📱 INSTALL MY FIRST ISLAM",
+begin:"Begin Your Journey",choose:"Choose what you want to learn.",startDesc:"Learn the basic foundations of Islam.",salahDesc:"Learn prayer step by step.",wuduDesc:"Learn purification before prayer.",duasDesc:"Learn useful everyday supplications.",quizDesc:"Test your Islamic knowledge.",
+footerTag:"Learn Islam • Practice Islam • Live Islam",footerSmall:"A simple educational project for new Muslims and beginners.",
+foundation:"FOUNDATION",startHeading:"🌱 Start Here",startIntro:"Welcome to your journey of learning Islam. You do not need to learn everything at once. Begin with the foundations and continue step by step.",
+whatIslam:"What is Islam?",whoAllah:"Who is Allah?",shahadah:"The Shahadah",five:"The Five Pillars",six:"The Six Articles of Faith",worthy:"Allah is the One worthy of worship.",
+testimony:"Testimony of faith.",fivePrayer:"The five daily prayers.",zakat:"Obligatory charity for those who meet its conditions.",sawm:"Fasting during Ramadan.",hajj:"Pilgrimage to Makkah for those who are able.",
+beginnerSalah:"BEGINNER SALAH COURSE",salahTitle:"🕌 Learn Salah From Zero",salahIntro:"This course teaches a beginner the basic sequence of Salah step by step. Learn each part slowly and practice regularly.",important:"Important:",importantText:"There are details of Salah that can differ between recognized schools of Islamic jurisprudence. This beginner course focuses on the basic prayer sequence and common recitations.",fiveDaily:"The Five Daily Prayers",course:"Beginner Salah Course",
+preparing:"Preparing for Salah",starting:"Starting Salah",qiyam:"Qiyam & Al-Fatihah",additional:"Additional Qur'an Recitation",ruku:"Ruku",qawmah:"Qawmah & Sujood",second:"Second Rak'ah",tashahhud:"Tashahhud & Durood Ibrahim",duaSalam:"Dua & Salam",
+wuduBadge:"WUDU",wuduTitle:"💧 Learn Wudu",wuduIntro:"Wudu is ritual purification performed before Salah when purification is required.",intention:"Intention",hands:"Hands",mouth:"Mouth",nose:"Nose",face:"Face",arms:"Arms",head:"Head",ears:"Ears",feet:"Feet",note:"Note:",wuduNote:"Some details of Wudu differ among recognized schools of Islamic jurisprudence. More detailed explanations can be added later.",
+dailyBadge:"DAILY DUAS",dailyTitle:"🤲 Daily Duas",beforeEating:"Before Eating",beforeSleeping:"Before Sleeping",forgiveness:"Seeking Forgiveness",leaving:"When Leaving Home",english:"English:",urdu:"اردو:",
+quizBadge:"BEGINNER QUIZ",quizTitle:"🧠 Test Your Knowledge",next:"NEXT QUESTION",correct:"✅ Correct!",correctAnswer:"❌ The correct answer is ",complete:"🎉 Quiz Complete!",scored:"You scored ",outOf:" out of ",restart:"RESTART QUIZ",lessonComplete:"✅ Lesson completed!"
+},
+ur:{
+home:"ہوم",start:"شروع",salah:"نماز",wudu:"وضو",duas:"دعائیں",quiz:"کوئز",startHere:"🌱 یہاں سے شروع کریں",learnSalah:"🕌 نماز سیکھیں",learnWudu:"💧 وضو سیکھیں",dailyDuas:"🤲 روزانہ کی دعائیں",quizNav:"🧠 کوئز",back:"← واپس",
+heroTitle:"میرا پہلا اسلام",heroSubtitle:"اسلام قدم بہ قدم سیکھیں",heroText:"نئے مسلمانوں اور ابتدائی سیکھنے والوں کے لیے اسلام سیکھنے کا آسان سفر۔ اسلام کی بنیادیں، نماز، وضو اور روزانہ کی دعائیں سیکھیں۔",startLearning:"سیکھنا شروع کریں",install:"📱 میرا پہلا اسلام انسٹال کریں",
+begin:"اپنا سفر شروع کریں",choose:"جو چیز سیکھنا چاہتے ہیں اسے منتخب کریں۔",startDesc:"اسلام کی بنیادی تعلیمات سیکھیں۔",salahDesc:"نماز قدم بہ قدم سیکھیں۔",wuduDesc:"نماز سے پہلے وضو اور پاکیزگی سیکھیں۔",duasDesc:"روزمرہ کی مفید دعائیں سیکھیں۔",quizDesc:"اپنے اسلامی علم کو جانچیں۔",
+footerTag:"اسلام سیکھیں • اسلام پر عمل کریں • اسلام کے مطابق زندگی گزاریں",footerSmall:"نئے مسلمانوں اور ابتدائی سیکھنے والوں کے لیے ایک سادہ تعلیمی منصوبہ۔",foundation:"بنیاد",startHeading:"🌱 یہاں سے شروع کریں",startIntro:"اسلام سیکھنے کے اپنے سفر میں خوش آمدید۔ آپ کو ایک ہی وقت میں سب کچھ سیکھنے کی ضرورت نہیں۔ بنیادی باتوں سے شروع کریں اور قدم بہ قدم آگے بڑھیں۔",
+whatIslam:"اسلام کیا ہے؟",whoAllah:"اللہ کون ہے؟",shahadah:"شہادت",five:"اسلام کے پانچ ارکان",six:"ایمان کے چھ ارکان",worthy:"اللہ ہی وہ ذات ہے جو عبادت کے لائق ہے۔",testimony:"ایمان کی گواہی۔",fivePrayer:"پانچ فرض نمازیں۔",zakat:"شرائط پوری ہونے پر فرض صدقہ۔",sawm:"رمضان کے روزے۔",hajj:"استطاعت رکھنے والوں کے لیے مکہ مکرمہ کا حج۔",
+beginnerSalah:"ابتدائی نماز کورس",salahTitle:"🕌 شروع سے نماز سیکھیں",salahIntro:"یہ کورس ابتدائی سیکھنے والے کو نماز کی بنیادی ترتیب قدم بہ قدم سکھاتا ہے۔ ہر حصے کو آہستہ آہستہ سیکھیں اور باقاعدگی سے مشق کریں۔",important:"اہم:",importantText:"نماز کی بعض تفصیلات فقہ کے مستند مذاہب کے درمیان مختلف ہو سکتی ہیں۔ یہ ابتدائی کورس نماز کی بنیادی ترتیب اور عام اذکار پر توجہ دیتا ہے۔",fiveDaily:"پانچ فرض نمازیں",course:"ابتدائی نماز کورس",
+preparing:"نماز کی تیاری",starting:"نماز شروع کرنا",qiyam:"قیام اور سورۃ الفاتحہ",additional:"اضافی قرآن کی تلاوت",ruku:"رکوع",qawmah:"قومہ اور سجدہ",second:"دوسری رکعت",tashahhud:"تشہد اور درودِ ابراہیمی",duaSalam:"دعا اور سلام",
+wuduBadge:"وضو",wuduTitle:"💧 وضو سیکھیں",wuduIntro:"وضو وہ شرعی پاکیزگی ہے جو ضرورت کے وقت نماز سے پہلے کی جاتی ہے۔",intention:"نیت",hands:"ہاتھ",mouth:"کلی",nose:"ناک",face:"چہرہ",arms:"بازو",head:"سر",ears:"کان",feet:"پاؤں",note:"نوٹ:",wuduNote:"وضو کی بعض تفصیلات فقہ کے مستند مذاہب کے درمیان مختلف ہیں۔ مزید تفصیلی وضاحتیں بعد میں شامل کی جا سکتی ہیں۔",
+dailyBadge:"روزانہ کی دعائیں",dailyTitle:"🤲 روزانہ کی دعائیں",beforeEating:"کھانے سے پہلے",beforeSleeping:"سونے سے پہلے",forgiveness:"استغفار",leaving:"گھر سے نکلتے وقت",english:"English:",urdu:"اردو:",
+quizBadge:"ابتدائی کوئز",quizTitle:"🧠 اپنا علم جانچیں",next:"اگلا سوال",correct:"✅ درست!",correctAnswer:"❌ درست جواب ہے: ",complete:"🎉 کوئز مکمل!",scored:"آپ نے ",outOf:" میں سے ",restart:"دوبارہ کوئز شروع کریں",lessonComplete:"✅ سبق مکمل ہوگیا!"
+},
+fr:{
+home:"Accueil",start:"Début",salah:"Salah",wudu:"Wudu",duas:"Invocations",quiz:"Quiz",startHere:"🌱 Commencer ici",learnSalah:"🕌 Apprendre la Salah",learnWudu:"💧 Apprendre les ablutions",dailyDuas:"🤲 Invocations quotidiennes",quizNav:"🧠 Quiz",back:"← Retour",
+heroTitle:"Mon Premier Islam",heroSubtitle:"Apprendre l'Islam étape par étape",heroText:"Un parcours simple pour les nouveaux musulmans et les débutants. Apprenez les bases de l'Islam, la Salah, les ablutions et les invocations quotidiennes.",startLearning:"COMMENCER À APPRENDRE",install:"📱 INSTALLER MON PREMIER ISLAM",
+begin:"Commencez votre parcours",choose:"Choisissez ce que vous souhaitez apprendre.",startDesc:"Apprenez les bases de l'Islam.",salahDesc:"Apprenez la prière étape par étape.",wuduDesc:"Apprenez les ablutions avant la prière.",duasDesc:"Apprenez des invocations utiles au quotidien.",quizDesc:"Testez vos connaissances islamiques.",
+footerTag:"Apprendre l'Islam • Pratiquer l'Islam • Vivre l'Islam",footerSmall:"Un projet éducatif simple pour les nouveaux musulmans et les débutants.",foundation:"FONDAMENTAUX",startHeading:"🌱 Commencer ici",startIntro:"Bienvenue dans votre parcours d'apprentissage de l'Islam. Vous n'avez pas besoin de tout apprendre en une fois. Commencez par les bases et avancez étape par étape.",
+whatIslam:"Qu'est-ce que l'Islam ?",whoAllah:"Qui est Allah ?",shahadah:"La Shahadah",five:"Les cinq piliers",six:"Les six articles de la foi",worthy:"Allah est Celui qui mérite l'adoration.",testimony:"Témoignage de foi.",fivePrayer:"Les cinq prières quotidiennes.",zakat:"Aumône obligatoire pour ceux qui remplissent ses conditions.",sawm:"Jeûne pendant le Ramadan.",hajj:"Pèlerinage à La Mecque pour ceux qui en ont la capacité.",
+beginnerSalah:"COURS DE SALAH POUR DÉBUTANTS",salahTitle:"🕌 Apprendre la Salah depuis zéro",salahIntro:"Ce cours enseigne aux débutants la séquence de base de la Salah étape par étape. Apprenez chaque partie lentement et entraînez-vous régulièrement.",important:"Important :",importantText:"Certains détails de la Salah peuvent différer entre les écoles reconnues de jurisprudence islamique. Ce cours se concentre sur la séquence de base et les récitations courantes.",fiveDaily:"Les cinq prières quotidiennes",course:"Cours de Salah pour débutants",
+preparing:"Préparer la Salah",starting:"Commencer la Salah",qiyam:"Qiyam et Al-Fatihah",additional:"Récitation supplémentaire du Coran",ruku:"Ruku",qawmah:"Qawmah et Sujood",second:"Deuxième Rak'ah",tashahhud:"Tashahhud et Durood Ibrahim",duaSalam:"Doua et Salam",
+wuduBadge:"ABLUTIONS",wuduTitle:"💧 Apprendre les ablutions",wuduIntro:"Les ablutions sont une purification rituelle effectuée avant la Salah lorsqu'elle est requise.",intention:"Intention",hands:"Mains",mouth:"Bouche",nose:"Nez",face:"Visage",arms:"Bras",head:"Tête",ears:"Oreilles",feet:"Pieds",note:"Remarque :",wuduNote:"Certains détails des ablutions diffèrent entre les écoles reconnues de jurisprudence islamique. Des explications plus détaillées pourront être ajoutées ultérieurement.",
+dailyBadge:"INVOCATIONS QUOTIDIENNES",dailyTitle:"🤲 Invocations quotidiennes",beforeEating:"Avant de manger",beforeSleeping:"Avant de dormir",forgiveness:"Demander pardon",leaving:"En quittant la maison",english:"English:",urdu:"اردو:",
+quizBadge:"QUIZ POUR DÉBUTANTS",quizTitle:"🧠 Testez vos connaissances",next:"QUESTION SUIVANTE",correct:"✅ Correct !",correctAnswer:"❌ La bonne réponse est ",complete:"🎉 Quiz terminé !",scored:"Vous avez obtenu ",outOf:" sur ",restart:"RECOMMENCER LE QUIZ",lessonComplete:"✅ Leçon terminée !"
+}};
+
+function T(k){const l=localStorage.getItem("myFirstIslamLanguage")||"en";return I18N[l][k]||I18N.en[k]||k}
+function language(lang){if(!I18N[lang])lang="en";localStorage.setItem("myFirstIslamLanguage",lang);document.documentElement.lang=lang;document.body.classList.toggle("rtl",lang==="ur");const s=document.getElementById("languageSelect");if(s)s.value=lang;applyLanguage();loadQuiz();}
+function applyLanguage(){
+const navs=[T("home"),T("start"),T("salah"),T("wudu"),T("duas"),T("quiz")];document.querySelectorAll("nav.desktop button").forEach((b,i)=>b.textContent=navs[i]);
+document.querySelectorAll("#mobileMenu button").forEach((b,i)=>b.textContent=[T("startHere"),T("learnSalah"),T("learnWudu"),T("dailyDuas"),T("quizNav")][i]||b.textContent);
+const h=document.querySelector(".hero");if(h){h.querySelector("h1").textContent=T("heroTitle");h.querySelector("h2").textContent=T("heroSubtitle");h.querySelector("p").textContent=T("heroText");h.querySelector(".primary").textContent=T("startLearning");const b=document.getElementById("installBtn");if(b)b.textContent=T("install")}
+document.querySelectorAll(".back").forEach(b=>b.textContent=T("back"));
+const home=document.getElementById("home");if(home){const hd=home.querySelector(".heading");hd.querySelector("h2").textContent=T("begin");hd.querySelector("p").textContent=T("choose");const data=[["🌱",T("startHere"),T("startDesc")],["🕌",T("learnSalah"),T("salahDesc")],["💧",T("learnWudu"),T("wuduDesc")],["🤲",T("dailyDuas"),T("duasDesc")],["🧠",T("quizNav"),T("quizDesc")]];home.querySelectorAll(".card").forEach((c,i)=>{c.querySelector(".icon").textContent=data[i][0];c.querySelector("h3").textContent=data[i][1].replace(/^[^ ]+ /,"");c.querySelector("p").textContent=data[i][2]})}
+const start=document.getElementById("start");if(start){const l=start.querySelector(".lesson");l.querySelector(".badge").textContent=T("foundation");l.querySelector("h2").textContent=T("startHeading");l.querySelectorAll("h3").forEach((h,i)=>h.textContent=[T("whatIslam"),T("whoAllah"),T("shahadah"),T("five"),T("six")][i]||h.textContent);l.querySelector("p").textContent=T("startIntro");}
+const salah=document.getElementById("salah");if(salah){const l=salah.querySelector(".lesson");l.querySelector(".badge").textContent=T("beginnerSalah");l.querySelector("h2").textContent=T("salahTitle");l.querySelector("p").textContent=T("salahIntro");l.querySelector(".warning").innerHTML="<strong>"+T("important")+"</strong><br>"+T("importantText");const hs=l.querySelectorAll("h3");if(hs[0])hs[0].textContent=T("fiveDaily");if(hs[1])hs[1].textContent=T("course");const n=[T("preparing"),T("starting"),T("qiyam"),T("additional"),T("ruku"),T("qawmah"),T("second"),T("tashahhud"),T("duaSalam")];l.querySelectorAll(".lesson-btn").forEach((b,i)=>b.querySelector("strong").textContent="Lesson "+(i+1)+" — "+n[i])}
+const w=document.getElementById("wudu");if(w){const l=w.querySelector(".lesson");l.querySelector(".badge").textContent=T("wuduBadge");l.querySelector("h2").textContent=T("wuduTitle");l.querySelector("p").textContent=T("wuduIntro");const ks=[["intention","intentionText"],["hands","handsText"],["mouth","mouthText"],["nose","noseText"],["face","faceText"],["arms","armsText"],["head","headText"],["ears","earsText"],["feet","feetText"]];l.querySelectorAll(".step").forEach((s,i)=>{s.querySelector("strong").textContent=T(ks[i][0]);});l.querySelector(".info").innerHTML="<strong>"+T("note")+"</strong><br>"+T("wuduNote")}
+const d=document.getElementById("duas");if(d){const l=d.querySelector(".lesson");l.querySelector(".badge").textContent=T("dailyBadge");l.querySelector("h2").textContent=T("dailyTitle");[T("beforeEating"),T("beforeSleeping"),T("forgiveness"),T("leaving")].forEach((x,i)=>l.querySelectorAll(".dua h3")[i].textContent=x)}
+const q=document.getElementById("quiz");if(q){q.querySelector(".badge").textContent=T("quizBadge");q.querySelector("h2").textContent=T("quizTitle");q.querySelector("#next").textContent=T("next")}
+const f=document.querySelector("footer");if(f){f.querySelector("p").textContent=T("footerTag");f.querySelector(".small").textContent=T("footerSmall")}
+document.querySelectorAll(".bottom button").forEach((b,i)=>{const sp=b.querySelector("span");const labels=[T("home"),T("start"),T("salah"),T("duas"),T("quiz")];b.innerHTML=sp.outerHTML+labels[i]});
+}
 
 /* =========================
 PAGE NAVIGATION
@@ -2260,6 +2329,16 @@ MARK LESSON COMPLETE
 };
 
 
+
+function localizeDynamicHTML(html){
+const l=localStorage.getItem("myFirstIslamLanguage")||"en";if(l==="en")return html;
+const d=l==="ur"?{
+"Preparing for Salah":"نماز کی تیاری","Starting Salah":"نماز شروع کرنا","Qiyam & Surah Al-Fatihah":"قیام اور سورۃ الفاتحہ","Additional Qur'an Recitation":"اضافی قرآن کی تلاوت","Ruku — Bowing":"رکوع — جھکنا","Qawmah & Sujood":"قومہ اور سجدہ","Second Rak'ah":"دوسری رکعت","Tashahhud & Durood Ibrahim":"تشہد اور درودِ ابراہیمی","Dua & Ending Salah":"دعا اور نماز کا اختتام","MARK LESSON COMPLETE":"سبق مکمل کریں","Purification":"پاکیزگی","Cleanliness":"صفائی","Clothing":"لباس","Qiblah":"قبلہ","Prayer time":"نماز کا وقت","Intention":"نیت","Takbeer":"تکبیر","Opening Supplication":"دعائے استفتاح","Transliteration:":"تلفظ:","After Al-Fatihah:":"سورۃ الفاتحہ کے بعد:","Beginner tip:":"ابتدائی مشورہ:","Dhikr in Ruku":"رکوع کا ذکر","Rising from Ruku":"رکوع سے اٹھنا","When Standing Upright":"سیدھے کھڑے ہونے پر","Going to Sujood":"سجدے میں جاتے وقت","Dhikr in Sujood":"سجدے کا ذکر","After the Second Rak'ah":"دوسری رکعت کے بعد","Make Dua":"دعا کریں","Ending the Salah":"نماز ختم کرنا","A Qur'anic Dua":"قرآنی دعا","Congratulations!":"مبارک ہو!"
+}:{
+"Preparing for Salah":"Préparer la Salah","Starting Salah":"Commencer la Salah","Qiyam & Surah Al-Fatihah":"Qiyam et sourate Al-Fatihah","Additional Qur'an Recitation":"Récitation supplémentaire du Coran","Ruku — Bowing":"Ruku — Inclinaison","Qawmah & Sujood":"Qawmah et Sujood","Second Rak'ah":"Deuxième Rak'ah","Tashahhud & Durood Ibrahim":"Tashahhud et Durood Ibrahim","Dua & Ending Salah":"Doua et fin de la Salah","MARK LESSON COMPLETE":"MARQUER LA LEÇON COMME TERMINÉE","Purification":"Purification","Cleanliness":"Propreté","Clothing":"Vêtements","Qiblah":"Qiblah","Prayer time":"Heure de la prière","Intention":"Intention","Takbeer":"Takbeer","Opening Supplication":"Invocation d'ouverture","Transliteration:":"Translittération :","After Al-Fatihah:":"Après Al-Fatihah :","Beginner tip:":"Conseil pour débutant :","Dhikr in Ruku":"Dhikr dans le Ruku","Rising from Ruku":"Se relever du Ruku","When Standing Upright":"En position debout","Going to Sujood":"Aller au Sujood","Dhikr in Sujood":"Dhikr dans le Sujood","After the Second Rak'ah":"Après la deuxième Rak'ah","Make Dua":"Faire une dou'a","Ending the Salah":"Terminer la Salah","A Qur'anic Dua":"Une dou'a coranique","Congratulations!":"Félicitations !"};
+Object.keys(d).forEach(k=>html=html.split(k).join(d[k]));return html;
+}
+
 /* =========================
 SHOW SALAH LESSON
 ========================= */
@@ -2268,7 +2347,7 @@ function salahLesson(number){
 
 const box=document.getElementById("salahContent");
 
-box.innerHTML=salahLessons[number];
+box.innerHTML=localizeDynamicHTML(salahLessons[number]);
 
 box.classList.remove("hide");
 
@@ -2294,7 +2373,7 @@ completedLessons.push(number);
 
 updateSalahProgress();
 
-alert("✅ Lesson completed!");
+alert(T("lessonComplete"));
 
 }
 
@@ -2410,12 +2489,18 @@ let answered=false;
 LOAD QUIZ
 ========================= */
 
+
+const quizText={
+ur:["فرض روزانہ کتنی نمازیں ہیں؟","فجر کے کتنے فرض رکعت ہیں؟","مغرب کے کتنے فرض رکعت ہیں؟","نماز میں مسلمان کس سمت رخ کرتے ہیں؟","نماز شروع کرتے وقت کیا کہا جاتا ہے؟","رکوع سے اٹھنے کے بعد کیا کہا جاتا ہے؟","پہلی دو رکعتوں میں سورۃ الفاتحہ کے بعد کیا پڑھا جاتا ہے؟","آخری قعدے میں تشہد کے بعد کیا پڑھا جاتا ہے؟","نماز ختم کرنے سے پہلے کیا پڑھا جاتا ہے؟"],
+fr:["Combien de prières quotidiennes obligatoires y a-t-il ?","Combien de rak'ahs Fard y a-t-il dans le Fajr ?","Combien de rak'ahs Fard y a-t-il dans le Maghrib ?","Dans quelle direction les musulmans se tournent-ils pendant la Salah ?","Que dit-on au début de la prière ?","Que dit-on après s'être relevé du Ruku ?","Que récite-t-on après Al-Fatihah dans les deux premières rak'ahs ?","Que récite-t-on après le Tashahhud dans la dernière position assise ?","Que récite-t-on avant de terminer la Salah ?"]};
+const quizOpts={ur:[["تین","چار","پانچ","سات"],["2","3","4","5"],["2","3","4","5"],["مدینہ","یروشلم","مکہ میں کعبہ","جبل اُحد"],["بسم اللہ","اللہ اکبر","استغفراللہ","الحمدللہ"],["ربنا ولک الحمد","استغفراللہ","سبحان ربی الاعلیٰ","اللہ اکبر"],["صرف دعا","قرآن کا ایک اضافی حصہ","صرف تشہد","سلام"],["رکوع","درودِ ابراہیمی","دوبارہ وضو","دوبارہ نماز شروع کرنے کی تکبیر"],["صرف بسم اللہ","دعا، پھر سلام","صرف ایک اور سورت","کچھ نہیں"]],fr:[["Trois","Quatre","Cinq","Sept"],["2","3","4","5"],["2","3","4","5"],["Médine","Jérusalem","La Ka'bah à La Mecque","Mont Uhud"],["Bismillah","Allahu Akbar","Astaghfirullah","Alhamdulillah"],["Rabbana wa lakal-hamd","Astaghfirullah","Subhana Rabbiyal-A'la","Allahu Akbar"],["Seulement une dou'a","Une portion supplémentaire du Coran","Seulement le Tashahhud","Salam"],["Ruku","Durood Ibrahim","De nouvelles ablutions","Takbeer pour recommencer"],["Seulement Bismillah","Une dou'a, suivie du Salam","Seulement une autre sourate","Rien"]]};
+
 function loadQuiz(){
 
 const q=questions[currentQuiz];
 
-document.getElementById("question").textContent=
-(currentQuiz+1)+". "+q.q;
+const qLang=localStorage.getItem("myFirstIslamLanguage")||"en";
+document.getElementById("question").textContent=(currentQuiz+1)+". "+((quizText[qLang]&&quizText[qLang][currentQuiz])||q.q);
 
 
 const options=document.getElementById("options");
@@ -2429,8 +2514,7 @@ const button=document.createElement("button");
 
 button.className="option";
 
-button.textContent=
-String.fromCharCode(65+index)+". "+answer;
+const qLang=localStorage.getItem("myFirstIslamLanguage")||"en"; const oo=quizOpts[qLang]?.[currentQuiz]; button.textContent=String.fromCharCode(65+index)+". "+(oo?oo[index]:answer);
 
 
 button.onclick=function(){
@@ -2494,8 +2578,7 @@ result.textContent="✅ Correct!";
 
 result.className="result show wrong";
 
-result.textContent=
-"❌ The correct answer is "+q.a[q.c];
+const qLang=localStorage.getItem("myFirstIslamLanguage")||"en"; const oo=quizOpts[qLang]?.[currentQuiz]; result.textContent=T("correctAnswer")+(oo?oo[q.c]:q.a[q.c]);
 
 }
 
@@ -2567,7 +2650,9 @@ loadQuiz();
 /* =========================
 START QUIZ
 ========================= */
-
+const savedLanguage=localStorage.getItem('myFirstIslamLanguage')||'en';
+document.documentElement.lang=savedLanguage;document.body.classList.toggle('rtl',savedLanguage==='ur');
+applyLanguage();
 loadQuiz();
 
 </script>
