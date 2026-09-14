@@ -2551,5 +2551,14 @@ loadQuiz();
 
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("My First Islam offline support enabled"))
+      .catch(error => console.log("Service Worker error:", error));
+  });
+}
+  </script>
 </body>
 </html>
