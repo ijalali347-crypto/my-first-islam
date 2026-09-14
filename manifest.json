@@ -1,0 +1,20 @@
+{
+  "name": "My First Islam",
+  "short_name": "My First Islam",
+  "description": "A simple beginner-friendly Islamic learning app with English and Urdu meanings.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#043b24",
+  "theme_color": "#075331",
+  "orientation": "portrait",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
