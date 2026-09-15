@@ -846,6 +846,25 @@ grid-template-columns:1fr;
 }
 }
 
+
+
+/* =========================
+   MULTILINGUAL INTERFACE
+   ========================= */
+html[dir="rtl"] body{direction:rtl}
+html[dir="rtl"] .desktop button,
+html[dir="rtl"] .mobile-menu button,
+html[dir="rtl"] .lesson-btn,
+html[dir="rtl"] .option{text-align:right}
+html[dir="rtl"] .step{flex-direction:row-reverse}
+html[dir="rtl"] .info,
+html[dir="rtl"] .warning{border-left:0;border-right:4px solid var(--green)}
+html[dir="rtl"] .warning{border-right-color:var(--gold)}
+html[dir="rtl"] .hadith-head{direction:rtl}
+html[dir="rtl"] .bukhari-toolbar{direction:ltr}
+html[dir="rtl"] #bukhariSearch{text-align:left}
+.language-hidden{display:none!important}
+
 </style>
 </head>
 
@@ -931,6 +950,10 @@ START LEARNING
 
 <button id="urBtn" onclick="language('ur')">
 🇵🇰 اردو
+</button>
+
+<button id="frBtn" onclick="language('fr')">
+🇫🇷 Français
 </button>
 
 </div>
@@ -3292,5 +3315,224 @@ window.addEventListener("appinstalled", () => {
   }
 });
 </script>
+
+
+<script>
+/* =========================
+   FULL ENGLISH / URDU / FRENCH LANGUAGE ENGINE
+   Bukhari intentionally stays Arabic + English only.
+   ========================= */
+(function(){
+  const T = {
+    ur: {
+      "My First Islam":"میرا پہلا اسلام",
+      "Home":"ہوم","Start":"شروع کریں","Salah":"نماز","Wudu":"وضو","Duas":"دعائیں","Bukhari":"بخاری","Quiz":"کوئز",
+      "🏠 Home":"🏠 ہوم","🌱 Start Here":"🌱 یہاں سے شروع کریں","🕌 Learn Salah":"🕌 نماز سیکھیں","💧 Learn Wudu":"💧 وضو سیکھیں","🤲 Daily Duas":"🤲 روزانہ کی دعائیں","📖 Sahih al-Bukhari":"📖 صحیح البخاری","🧠 Quiz":"🧠 کوئز",
+      "HOME":"ہوم","Learn Islam step by step":"اسلام مرحلہ وار سیکھیں",
+      "A simple learning journey for new Muslims and beginners. Learn the foundations of Islam, Salah, Wudu and daily Duas.":"نئے مسلمانوں اور ابتدائی سیکھنے والوں کے لیے اسلام سیکھنے کا آسان سفر۔ اسلام کی بنیادیں، نماز، وضو اور روزانہ کی دعائیں مرحلہ وار سیکھیں۔",
+      "START LEARNING":"سیکھنا شروع کریں","📱 INSTALL MY FIRST ISLAM":"📱 میرا پہلا اسلام انسٹال کریں",
+      "Begin Your Journey":"اپنا سفر شروع کریں","Choose what you want to learn.":"جو کچھ سیکھنا چاہتے ہیں اسے منتخب کریں۔",
+      "Start Here":"یہاں سے شروع کریں","Learn the basic foundations of Islam.":"اسلام کی بنیادی تعلیمات سیکھیں۔",
+      "Learn Salah":"نماز سیکھیں","Learn prayer step by step.":"نماز مرحلہ وار سیکھیں۔",
+      "Learn Wudu":"وضو سیکھیں","Learn purification before prayer.":"نماز سے پہلے طہارت کا طریقہ سیکھیں۔",
+      "Daily Duas":"روزانہ کی دعائیں","Learn useful everyday supplications.":"روزمرہ کی مفید دعائیں سیکھیں۔",
+      "Sahih al-Bukhari":"صحیح البخاری","Read the complete Arabic and English collection.":"مکمل عربی اور انگریزی مجموعہ پڑھیں۔",
+      "Test your Islamic knowledge.":"اپنے اسلامی علم کا امتحان لیں۔",
+      "← Back":"← واپس","FOUNDATION":"بنیاد","Welcome to your journey of learning Islam. You do not need to learn everything at once. Begin with the foundations and continue step by step.":"اسلام سیکھنے کے اپنے سفر میں خوش آمدید۔ آپ کو سب کچھ ایک ساتھ سیکھنے کی ضرورت نہیں۔ بنیادی تعلیمات سے شروع کریں اور مرحلہ وار آگے بڑھیں۔",
+      "What is Islam?":"اسلام کیا ہے؟","Islam is submission to Allah and obedience to His guidance. Muslims worship Allah alone and follow the guidance brought by His Messenger Muhammad ﷺ.":"اسلام اللہ کے سامنے فرمانبرداری اور اس کی ہدایت کی پیروی کا نام ہے۔ مسلمان صرف اللہ کی عبادت کرتے ہیں اور اس کے رسول محمد ﷺ کی لائی ہوئی ہدایت کی پیروی کرتے ہیں۔",
+      "Who is Allah?":"اللہ کون ہے؟","Allah is the One true God, the Creator and Sustainer of everything. He alone deserves worship.":"اللہ ہی ایک سچا معبود ہے، وہ ہر چیز کا خالق اور پالنے والا ہے۔ صرف وہی عبادت کے لائق ہے۔",
+      "English:":"انگریزی:","Transliteration:":"تلفظ:","The Shahadah":"شہادت","I testify that there is no deity worthy of worship except Allah, and I testify that Muhammad is the Messenger of Allah.":"میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبودِ برحق نہیں، اور میں گواہی دیتا ہوں کہ محمد ﷺ اللہ کے رسول ہیں۔",
+      "The Five Pillars":"اسلام کے پانچ ارکان","Shahadah":"شہادت","Testimony of faith.":"ایمان کی گواہی۔","The five daily prayers.":"پانچ وقت کی نمازیں۔","Zakat":"زکوٰۃ","Obligatory charity for those who meet its conditions.":"شرائط پوری کرنے والوں پر فرض صدقہ۔","Sawm":"روزہ","Fasting during Ramadan.":"رمضان میں روزہ رکھنا۔","Hajj":"حج","Pilgrimage to Makkah for those who are able.":"استطاعت رکھنے والوں کے لیے مکہ کا حج۔",
+      "The Six Articles of Faith":"ایمان کے چھ ارکان","1. Belief in Allah":"1۔ اللہ پر ایمان","2. His angels":"2۔ اس کے فرشتوں پر ایمان","3. His books":"3۔ اس کی کتابوں پر ایمان","4. His messengers":"4۔ اس کے رسولوں پر ایمان","5. The Last Day":"5۔ آخرت کے دن پر ایمان","6. Divine decree (Al-Qadar)":"6۔ تقدیر پر ایمان",
+      "SALAH":"نماز","BEGINNER SALAH COURSE":"ابتدائی نماز کورس","🕌 Learn Salah From Zero":"🕌 نماز بالکل ابتدا سے سیکھیں","This course teaches a beginner the basic sequence of Salah step by step. Learn each part slowly and practice regularly.":"یہ کورس ابتدائی سیکھنے والے کو نماز کی بنیادی ترتیب مرحلہ وار سکھاتا ہے۔ ہر حصے کو آہستہ آہستہ سیکھیں اور باقاعدگی سے مشق کریں۔",
+      "Important:":"اہم:","There are details of Salah that can differ between recognized schools of Islamic jurisprudence. This beginner course focuses on the basic prayer sequence and common recitations.":"فقہ کے مستند مذاہب کے درمیان نماز کی بعض تفصیلات مختلف ہو سکتی ہیں۔ یہ ابتدائی کورس نماز کی بنیادی ترتیب اور عام تلاوتوں پر توجہ دیتا ہے۔",
+      "The Five Daily Prayers":"پانچ وقت کی نمازیں","2 Fard":"2 فرض","4 Fard":"4 فرض","3 Fard":"3 فرض","Beginner Salah Course":"ابتدائی نماز کورس",
+      "Lesson 1 — Preparing for Salah":"سبق 1 — نماز کی تیاری","Wudu, cleanliness, clothing, Qiblah, time and intention":"وضو، پاکیزگی، لباس، قبلہ، وقت اور نیت",
+      "Lesson 2 — Starting Salah":"سبق 2 — نماز شروع کرنا","Standing, intention and Takbeer":"قیام، نیت اور تکبیر",
+      "Lesson 3 — Qiyam & Al-Fatihah":"سبق 3 — قیام اور الفاتحہ","Standing and reciting Surah Al-Fatihah":"قیام اور سورۃ الفاتحہ کی تلاوت",
+      "Lesson 4 — Additional Qur'an Recitation":"سبق 4 — اضافی قرآنی تلاوت","Surah Al-Ikhlas after Al-Fatihah":"الفاتحہ کے بعد سورۃ الاخلاص",
+      "Lesson 5 — Ruku":"سبق 5 — رکوع","Bowing and its remembrance":"رکوع اور اس کا ذکر",
+      "Lesson 6 — Qawmah & Sujood":"سبق 6 — قومہ اور سجدہ","Rising from Ruku, Rabbana lakal-hamd and prostration":"رکوع سے اٹھنا، ربنا ولک الحمد اور سجدہ",
+      "Lesson 7 — Second Rak'ah":"سبق 7 — دوسری رکعت","Repeat the prayer sequence and learn the sitting":"نماز کی ترتیب دہرائیں اور بیٹھنے کا طریقہ سیکھیں",
+      "Lesson 8 — Tashahhud & Durood Ibrahim":"سبق 8 — تشہد اور درودِ ابراہیمی","Final sitting and sending blessings upon the Prophet ﷺ":"آخری قعدہ اور نبی ﷺ پر درود بھیجنا",
+      "Lesson 9 — Dua & Salam":"سبق 9 — دعا اور سلام","Make Dua and finish the Salah":"دعا کریں اور نماز مکمل کریں",
+      "WUDU":"وضو","Wudu is ritual purification performed before Salah when purification is required.":"وضو وہ شرعی پاکیزگی ہے جو ضرورت کے وقت نماز سے پہلے کی جاتی ہے۔",
+      "Intention":"نیت","Make the intention for purification in your heart.":"اپنے دل میں پاکیزگی کی نیت کریں۔","Hands":"ہاتھ","Wash both hands thoroughly.":"دونوں ہاتھ اچھی طرح دھوئیں۔","Mouth":"منہ","Rinse the mouth.":"کلی کریں۔","Nose":"ناک","Clean the nose with water.":"پانی سے ناک صاف کریں۔","Face":"چہرہ","Wash the whole face.":"پورا چہرہ دھوئیں۔","Arms":"بازو","Wash the arms including the elbows.":"کہنیوں سمیت دونوں بازو دھوئیں۔","Head":"سر","Wipe the head with wet hands.":"گیلے ہاتھوں سے سر کا مسح کریں۔","Ears":"کان","Wipe the ears.":"کانوں کا مسح کریں۔","Feet":"پاؤں","Wash both feet including the ankles.":"ٹخنوں سمیت دونوں پاؤں دھوئیں۔","Note:":"نوٹ:","Some details of Wudu differ among recognized schools of Islamic jurisprudence. More detailed explanations can be added later.":"فقہ کے مستند مذاہب کے درمیان وضو کی بعض تفصیلات مختلف ہو سکتی ہیں۔ مزید تفصیلی وضاحت بعد میں شامل کی جا سکتی ہے۔",
+      "DUAS":"دعائیں","DAILY DUAS":"روزانہ کی دعائیں","Before Eating":"کھانے سے پہلے","Before Sleeping":"سونے سے پہلے","Seeking Forgiveness":"مغفرت طلب کرنا","When Leaving Home":"گھر سے نکلتے وقت",
+      "In the name of Allah.":"اللہ کے نام سے۔","O Allah, in Your name I die and I live.":"اے اللہ! تیرے ہی نام کے ساتھ مرتا اور جیتا ہوں۔","I seek forgiveness from Allah.":"میں اللہ سے بخشش مانگتا ہوں۔","In the name of Allah. I place my trust in Allah. There is no power and no strength except with Allah.":"اللہ کے نام سے۔ میں نے اللہ پر بھروسہ کیا۔ اللہ کے سوا نہ کوئی طاقت ہے نہ قوت۔",
+      "QUIZ":"کوئز","BEGINNER QUIZ":"ابتدائی کوئز","🧠 Test Your Knowledge":"🧠 اپنے علم کا امتحان لیں","NEXT QUESTION":"اگلا سوال","Correct!":"درست!","The correct answer is":"درست جواب ہے","RESTART QUIZ":"کوئز دوبارہ شروع کریں","You scored":"آپ کا اسکور","out of":"میں سے","questions.":"سوالات۔",
+      "Learn Islam • Practice Islam • Live Islam":"اسلام سیکھیں • اسلام پر عمل کریں • اسلام کے مطابق زندگی گزاریں","A simple educational project for new Muslims and beginners.":"نئے مسلمانوں اور ابتدائی سیکھنے والوں کے لیے ایک سادہ تعلیمی منصوبہ۔"
+    },
+    fr: {
+      "My First Islam":"Mon Premier Islam","Home":"Accueil","Start":"Début","Salah":"Prière","Wudu":"Wudu","Duas":"Invocations","Bukhari":"Boukhari","Quiz":"Quiz",
+      "🏠 Home":"🏠 Accueil","🌱 Start Here":"🌱 Commencer ici","🕌 Learn Salah":"🕌 Apprendre la prière","💧 Learn Wudu":"💧 Apprendre le wudu","🤲 Daily Duas":"🤲 Invocations quotidiennes","📖 Sahih al-Bukhari":"📖 Sahih al-Boukhari","🧠 Quiz":"🧠 Quiz",
+      "HOME":"ACCUEIL","Learn Islam step by step":"Apprendre l’islam étape par étape",
+      "A simple learning journey for new Muslims and beginners. Learn the foundations of Islam, Salah, Wudu and daily Duas.":"Un parcours simple pour les nouveaux musulmans et les débutants. Apprenez les bases de l’islam, la prière, le wudu et les invocations quotidiennes.",
+      "START LEARNING":"COMMENCER À APPRENDRE","📱 INSTALL MY FIRST ISLAM":"📱 INSTALLER MON PREMIER ISLAM","Begin Your Journey":"Commencez votre parcours","Choose what you want to learn.":"Choisissez ce que vous souhaitez apprendre.",
+      "Start Here":"Commencer ici","Learn the basic foundations of Islam.":"Apprenez les bases fondamentales de l’islam.","Learn Salah":"Apprendre la prière","Learn prayer step by step.":"Apprenez la prière étape par étape.","Learn Wudu":"Apprendre le wudu","Learn purification before prayer.":"Apprenez la purification avant la prière.","Daily Duas":"Invocations quotidiennes","Learn useful everyday supplications.":"Apprenez des invocations utiles pour la vie quotidienne.","Sahih al-Bukhari":"Sahih al-Boukhari","Read the complete Arabic and English collection.":"Lisez la collection complète en arabe et en anglais.","Test your Islamic knowledge.":"Testez vos connaissances islamiques.",
+      "← Back":"← Retour","FOUNDATION":"FONDAMENTAUX","Welcome to your journey of learning Islam. You do not need to learn everything at once. Begin with the foundations and continue step by step.":"Bienvenue dans votre parcours d’apprentissage de l’islam. Vous n’avez pas besoin de tout apprendre d’un coup. Commencez par les fondamentaux et avancez étape par étape.",
+      "What is Islam?":"Qu’est-ce que l’islam ?","Islam is submission to Allah and obedience to His guidance. Muslims worship Allah alone and follow the guidance brought by His Messenger Muhammad ﷺ.":"L’islam est la soumission à Allah et l’obéissance à Sa guidance. Les musulmans adorent Allah seul et suivent la guidance apportée par Son Messager Muhammad ﷺ.",
+      "Who is Allah?":"Qui est Allah ?","Allah is the One true God, the Creator and Sustainer of everything. He alone deserves worship.":"Allah est le Dieu unique et véritable, le Créateur et Celui qui fait subsister toute chose. Lui seul mérite l’adoration.","English:":"Anglais :","Transliteration:":"Translittération :","The Shahadah":"La Chahada","I testify that there is no deity worthy of worship except Allah, and I testify that Muhammad is the Messenger of Allah.":"J’atteste qu’il n’y a aucune divinité digne d’adoration sauf Allah, et j’atteste que Muhammad est le Messager d’Allah.",
+      "The Five Pillars":"Les cinq piliers","Shahadah":"Chahada","Testimony of faith.":"Témoignage de foi.","The five daily prayers.":"Les cinq prières quotidiennes.","Zakat":"Zakat","Obligatory charity for those who meet its conditions.":"Aumône obligatoire pour ceux qui remplissent ses conditions.","Sawm":"Jeûne","Fasting during Ramadan.":"Jeûner pendant le Ramadan.","Hajj":"Hajj","Pilgrimage to Makkah for those who are able.":"Pèlerinage à La Mecque pour ceux qui en ont la capacité.",
+      "The Six Articles of Faith":"Les six piliers de la foi","1. Belief in Allah":"1. Croire en Allah","2. His angels":"2. Ses anges","3. His books":"3. Ses Livres","4. His messengers":"4. Ses messagers","5. The Last Day":"5. Le Jour dernier","6. Divine decree (Al-Qadar)":"6. Le destin divin (Al-Qadar)",
+      "SALAH":"PRIÈRE","BEGINNER SALAH COURSE":"COURS DE PRIÈRE POUR DÉBUTANTS","🕌 Learn Salah From Zero":"🕌 Apprendre la prière depuis zéro","This course teaches a beginner the basic sequence of Salah step by step. Learn each part slowly and practice regularly.":"Ce cours enseigne aux débutants la séquence de base de la prière étape par étape. Apprenez chaque partie lentement et pratiquez régulièrement.","Important:":"Important :","There are details of Salah that can differ between recognized schools of Islamic jurisprudence. This beginner course focuses on the basic prayer sequence and common recitations.":"Certains détails de la prière peuvent différer selon les écoles reconnues de jurisprudence islamique. Ce cours pour débutants se concentre sur la séquence de base et les récitations courantes.","The Five Daily Prayers":"Les cinq prières quotidiennes","2 Fard":"2 Fard","4 Fard":"4 Fard","3 Fard":"3 Fard","Beginner Salah Course":"Cours de prière pour débutants",
+      "Lesson 1 — Preparing for Salah":"Leçon 1 — Préparer la prière","Wudu, cleanliness, clothing, Qiblah, time and intention":"Wudu, propreté, vêtements, Qiblah, horaire et intention","Lesson 2 — Starting Salah":"Leçon 2 — Commencer la prière","Standing, intention and Takbeer":"Station debout, intention et takbir","Lesson 3 — Qiyam & Al-Fatihah":"Leçon 3 — Qiyam et Al-Fatihah","Standing and reciting Surah Al-Fatihah":"Station debout et récitation de la sourate Al-Fatihah","Lesson 4 — Additional Qur'an Recitation":"Leçon 4 — Récitation supplémentaire du Coran","Surah Al-Ikhlas after Al-Fatihah":"Sourate Al-Ikhlas après Al-Fatihah","Lesson 5 — Ruku":"Leçon 5 — Ruku","Bowing and its remembrance":"Inclinaison et son rappel","Lesson 6 — Qawmah & Sujood":"Leçon 6 — Qawmah et Sujood","Rising from Ruku, Rabbana lakal-hamd and prostration":"Se relever du ruku, Rabbana wa lakal-hamd et prosternation","Lesson 7 — Second Rak'ah":"Leçon 7 — Deuxième rak‘ah","Repeat the prayer sequence and learn the sitting":"Répétez la séquence de prière et apprenez la position assise","Lesson 8 — Tashahhud & Durood Ibrahim":"Leçon 8 — Tashahhud et Durood Ibrahim","Final sitting and sending blessings upon the Prophet ﷺ":"Dernière position assise et bénédictions sur le Prophète ﷺ","Lesson 9 — Dua & Salam":"Leçon 9 — Doua et Salam","Make Dua and finish the Salah":"Faites une doua et terminez la prière",
+      "WUDU":"WUDU","Wudu is ritual purification performed before Salah when purification is required.":"Le wudu est une purification rituelle accomplie avant la prière lorsque la purification est requise.","Intention":"Intention","Make the intention for purification in your heart.":"Formulez l’intention de purification dans votre cœur.","Hands":"Mains","Wash both hands thoroughly.":"Lavez soigneusement les deux mains.","Mouth":"Bouche","Rinse the mouth.":"Rincez la bouche.","Nose":"Nez","Clean the nose with water.":"Nettoyez le nez avec de l’eau.","Face":"Visage","Wash the whole face.":"Lavez tout le visage.","Arms":"Bras","Wash the arms including the elbows.":"Lavez les bras, y compris les coudes.","Head":"Tête","Wipe the head with wet hands.":"Passez les mains mouillées sur la tête.","Ears":"Oreilles","Wipe the ears.":"Essuyez les oreilles.","Feet":"Pieds","Wash both feet including the ankles.":"Lavez les deux pieds, y compris les chevilles.","Note:":"Remarque :","Some details of Wudu differ among recognized schools of Islamic jurisprudence. More detailed explanations can be added later.":"Certains détails du wudu diffèrent selon les écoles reconnues de jurisprudence islamique. Des explications plus détaillées pourront être ajoutées ultérieurement.",
+      "DUAS":"INVOCATIONS","DAILY DUAS":"INVOCATIONS QUOTIDIENNES","Before Eating":"Avant de manger","Before Sleeping":"Avant de dormir","Seeking Forgiveness":"Demander pardon","When Leaving Home":"En quittant la maison","In the name of Allah.":"Au nom d’Allah.","O Allah, in Your name I die and I live.":"Ô Allah, c’est en Ton nom que je meurs et que je vis.","I seek forgiveness from Allah.":"Je demande pardon à Allah.","In the name of Allah. I place my trust in Allah. There is no power and no strength except with Allah.":"Au nom d’Allah. Je place ma confiance en Allah. Il n’y a de force ni de puissance qu’avec Allah.",
+      "QUIZ":"QUIZ","BEGINNER QUIZ":"QUIZ POUR DÉBUTANTS","🧠 Test Your Knowledge":"🧠 Testez vos connaissances","NEXT QUESTION":"QUESTION SUIVANTE","Correct!":"Correct !","The correct answer is":"La bonne réponse est","RESTART QUIZ":"RECOMMENCER LE QUIZ","You scored":"Votre score est","out of":"sur","questions.":"questions.","Learn Islam • Practice Islam • Live Islam":"Apprendre l’islam • Pratiquer l’islam • Vivre l’islam","A simple educational project for new Muslims and beginners.":"Un projet éducatif simple pour les nouveaux musulmans et les débutants."
+    }
+  };
+
+  // Extra text used only inside the dynamically rendered Salah lessons.
+  const S = {
+    ur: {
+      "LESSON 1":"سبق 1","Preparing for Salah":"نماز کی تیاری","Before beginning Salah, a Muslim prepares physically and spiritually.":"نماز شروع کرنے سے پہلے مسلمان جسمانی اور روحانی طور پر تیاری کرتا ہے۔","Purification":"پاکیزگی","Perform Wudu when required.":"ضرورت کے وقت وضو کریں۔","Cleanliness":"صفائی","Make sure your body, clothing and place of prayer are clean.":"یقینی بنائیں کہ آپ کا جسم، لباس اور نماز کی جگہ پاک صاف ہو۔","Clothing":"لباس","Wear clothing that fulfills the requirements of Salah.":"ایسا لباس پہنیں جو نماز کی شرائط پوری کرتا ہو۔","Qiblah":"قبلہ","Face toward the Ka'bah in Makkah.":"مکہ میں کعبہ کی طرف رخ کریں۔","Prayer time":"نماز کا وقت","Perform each obligatory prayer within its prescribed time.":"ہر فرض نماز اس کے مقررہ وقت میں ادا کریں۔","Have the intention in your heart for the prayer you are performing.":"جس نماز کو ادا کر رہے ہیں اس کی نیت دل میں کریں۔","Remember:":"یاد رکھیں:","The intention is in the heart. A specific spoken formula for intention is not required for the basic intention itself.":"نیت دل میں ہوتی ہے۔ نیت کے لیے کوئی مخصوص زبانی کلمات کہنا بذاتِ خود ضروری نہیں۔","MARK LESSON COMPLETE":"سبق مکمل کریں",
+      "LESSON 2":"سبق 2","Starting Salah":"نماز شروع کرنا","Stand facing the Qiblah and begin the prayer with Takbeer.":"قبلہ رخ کھڑے ہوں اور تکبیر کے ساتھ نماز شروع کریں۔","Takbeer":"تکبیر","Allah is the Greatest.":"اللہ سب سے بڑا ہے۔","Opening Supplication":"دعائے استفتاح","A commonly recited opening supplication is:":"نماز کے آغاز میں پڑھی جانے والی ایک معروف دعا یہ ہے:","Glory is to You, O Allah, and praise. Blessed is Your name, exalted is Your majesty, and there is no deity worthy of worship except You.":"اے اللہ! تو پاک ہے اور تیری ہی حمد ہے۔ تیرا نام بابرکت ہے، تیری شان بلند ہے، اور تیرے سوا کوئی معبودِ برحق نہیں۔",
+      "LESSON 3":"سبق 3","Qiyam & Surah Al-Fatihah":"قیام اور سورۃ الفاتحہ","After beginning the prayer, stand for Qiyam and recite the Qur'an. Surah Al-Fatihah is recited in each rak'ah.":"نماز شروع کرنے کے بعد قیام کریں اور قرآن کی تلاوت کریں۔ ہر رکعت میں سورۃ الفاتحہ پڑھی جاتی ہے۔","Surah Al-Fatihah":"سورۃ الفاتحہ","All praise is for Allah, Lord of the worlds.":"سب تعریفیں اللہ کے لیے ہیں جو تمام جہانوں کا رب ہے۔","The Most Merciful, the Especially Merciful.":"نہایت مہربان، بہت رحم فرمانے والا۔","Master of the Day of Judgment.":"روزِ جزا کا مالک۔","You alone we worship and You alone we ask for help.":"ہم صرف تیری عبادت کرتے ہیں اور صرف تجھ ہی سے مدد مانگتے ہیں۔","Guide us to the straight path.":"ہمیں سیدھا راستہ دکھا۔","The path of those You have blessed,":"ان لوگوں کا راستہ جن پر تو نے انعام فرمایا،","not those who earned Your anger,":"نہ ان کا جن پر غضب ہوا،","nor those who went astray.":"اور نہ گمراہوں کا۔","After Al-Fatihah:":"الفاتحہ کے بعد:","Say Amin and then continue with the additional Qur'an recitation taught in the next lesson.":"آمین کہیں، پھر اگلے سبق میں سکھائی گئی اضافی قرآنی تلاوت جاری رکھیں۔",
+      "LESSON 4":"سبق 4","Additional Qur'an Recitation":"اضافی قرآنی تلاوت","After Surah Al-Fatihah, an additional portion of the Qur'an is recited in the first two rak'ahs of the obligatory prayer. For a beginner, Surah Al-Ikhlas is a good short surah to learn.":"سورۃ الفاتحہ کے بعد فرض نماز کی پہلی دو رکعتوں میں قرآن کا مزید حصہ پڑھا جاتا ہے۔ ابتدائی سیکھنے والے کے لیے سورۃ الاخلاص ایک اچھی مختصر سورت ہے۔","Surah Al-Ikhlas":"سورۃ الاخلاص","Say: He is Allah, the One.":"کہہ دیجیے: وہ اللہ ایک ہے۔","Allah, the Eternal Refuge.":"اللہ بے نیاز ہے۔","He neither begets nor is born.":"نہ اس نے کسی کو جنا اور نہ وہ جنا گیا۔","And there is none comparable to Him.":"اور کوئی اس کے برابر نہیں۔","Beginner tip:":"ابتدائی مشورہ:","You do not have to learn many surahs at once. Start with one short surah and gradually learn more Qur'an.":"آپ کو ایک ساتھ بہت سی سورتیں سیکھنے کی ضرورت نہیں۔ ایک مختصر سورت سے شروع کریں اور آہستہ آہستہ مزید قرآن سیکھیں۔",
+      "LESSON 5":"سبق 5","Ruku — Bowing":"رکوع — جھکنا","After the standing recitation, move into Ruku while saying:":"قیام میں تلاوت کے بعد یہ کہتے ہوئے رکوع میں جائیں:","Dhikr in Ruku":"رکوع کا ذکر","Glory is to my Lord, the Most Great.":"پاک ہے میرا رب، عظمت والا۔",
+      "LESSON 6":"سبق 6","Qawmah & Sujood":"قومہ اور سجدہ","Rising from Ruku":"رکوع سے اٹھنا","Rise from Ruku into the standing position.":"رکوع سے اٹھ کر سیدھے کھڑے ہوں۔","Allah hears the one who praises Him.":"اللہ اس شخص کی سنتا ہے جو اس کی حمد بیان کرتا ہے۔","When Standing Upright":"سیدھے کھڑے ہونے پر","Our Lord, and to You is all praise.":"اے ہمارے رب! اور تیرے ہی لیے تمام تعریف ہے۔","Going to Sujood":"سجدے میں جانا","Say Allahu Akbar as you move into Sujood.":"سجدے میں جاتے ہوئے اللہ اکبر کہیں۔","Dhikr in Sujood":"سجدے کا ذکر","Glory is to my Lord, the Most High.":"پاک ہے میرا رب، سب سے بلند۔","Sujood is a position of great humility before Allah.":"سجدہ اللہ کے سامنے بڑی عاجزی کی حالت ہے۔","After the first Sujood, sit briefly and then perform the second Sujood.":"پہلے سجدے کے بعد تھوڑی دیر بیٹھیں اور پھر دوسرا سجدہ کریں۔",
+      "LESSON 7":"سبق 7","Second Rak'ah":"دوسری رکعت","After completing the first rak'ah, stand for the second rak'ah. The basic sequence is repeated.":"پہلی رکعت مکمل کرنے کے بعد دوسری رکعت کے لیے کھڑے ہوں۔ بنیادی ترتیب دہرائی جاتی ہے۔","Stand":"کھڑے ہوں","Stand for the second rak'ah.":"دوسری رکعت کے لیے کھڑے ہوں۔","Recite Surah Al-Fatihah.":"سورۃ الفاتحہ پڑھیں۔","Additional Qur'an":"اضافی قرآن","Recite another portion of the Qur'an.":"قرآن کا مزید حصہ پڑھیں۔","Perform Ruku and recite its dhikr.":"رکوع کریں اور اس کا ذکر پڑھیں۔","Rise from Ruku and say Rabbana wa lakal-hamd.":"رکوع سے اٹھیں اور ربنا ولک الحمد کہیں۔","Two Sujoods":"دو سجدے","Perform the first Sujood, sit, then perform the second Sujood.":"پہلا سجدہ کریں، بیٹھیں، پھر دوسرا سجدہ کریں۔","After the Second Rak'ah":"دوسری رکعت کے بعد","In a two-rak'ah prayer such as Fajr Fard, the worshipper sits after the second rak'ah for Tashahhud and then continues with Durood, Dua and Salam.":"فجر فرض جیسی دو رکعت نماز میں نمازی دوسری رکعت کے بعد تشہد کے لیے بیٹھتا ہے، پھر درود، دعا اور سلام جاری رکھتا ہے۔","In prayers with more than two rak'ahs, the sitting and recitation details continue according to the prayer being performed.":"دو سے زیادہ رکعت والی نمازوں میں بیٹھنے اور تلاوت کی تفصیلات ادا کی جانے والی نماز کے مطابق جاری رہتی ہیں۔",
+      "LESSON 8":"سبق 8","Tashahhud & Durood Ibrahim":"تشہد اور درودِ ابراہیمی","Tashahhud":"تشہد","All greetings, prayers and good things are for Allah.":"تمام قولی عبادتیں، نمازیں اور پاکیزہ چیزیں اللہ ہی کے لیے ہیں۔","Peace be upon you, O Prophet, and the mercy of Allah and His blessings.":"اے نبی! آپ پر سلام ہو اور اللہ کی رحمت اور اس کی برکتیں ہوں۔","Peace be upon us and all the righteous servants of Allah.":"ہم پر اور اللہ کے تمام نیک بندوں پر سلام ہو۔","I testify that there is no deity worthy of worship except Allah,":"میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبودِ برحق نہیں،","and I testify that Muhammad is His servant and Messenger.":"اور میں گواہی دیتا ہوں کہ محمد ﷺ اس کے بندے اور رسول ہیں۔","In the final sitting, after Tashahhud, recite Durood Ibrahim.":"آخری قعدے میں تشہد کے بعد درودِ ابراہیمی پڑھیں۔","O Allah, send Your blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy, Glorious.":"اے اللہ! محمد ﷺ اور آلِ محمد پر رحمت نازل فرما، جس طرح تو نے ابراہیم اور آلِ ابراہیم پر رحمت نازل فرمائی۔ بے شک تو قابلِ حمد اور بزرگی والا ہے۔","O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim. Indeed, You are Praiseworthy, Glorious.":"اے اللہ! محمد ﷺ اور آلِ محمد پر برکت نازل فرما، جس طرح تو نے ابراہیم اور آلِ ابراہیم پر برکت نازل فرمائی۔ بے شک تو قابلِ حمد اور بزرگی والا ہے۔",
+      "LESSON 9":"سبق 9","Dua & Ending Salah":"دعا اور نماز کا اختتام","Make Dua":"دعا کریں","After Tashahhud and Durood Ibrahim in the final sitting, you may make Dua before ending the prayer.":"آخری قعدے میں تشہد اور درودِ ابراہیمی کے بعد نماز ختم کرنے سے پہلے دعا کر سکتے ہیں۔","A Qur'anic Dua":"قرآنی دعا","Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.":"اے ہمارے رب! ہمیں دنیا میں بھلائی عطا فرما اور آخرت میں بھی بھلائی عطا فرما اور ہمیں آگ کے عذاب سے بچا۔","Ending the Salah":"نماز کا اختتام","Turn your face toward the right and say:":"اپنا چہرہ دائیں طرف موڑ کر کہیں:","Peace and the mercy of Allah be upon you.":"تم پر سلامتی اور اللہ کی رحمت ہو۔","Then turn toward the left and say the same:":"پھر بائیں طرف رخ کریں اور یہی کہیں:","🎉 Congratulations!":"🎉 مبارک ہو!","You have completed the basic beginner Salah course.":"آپ نے ابتدائی نماز کا بنیادی کورس مکمل کر لیا ہے۔","Keep practicing, learn gradually, and ask a qualified teacher when you need detailed guidance.":"مشق جاری رکھیں، آہستہ آہستہ سیکھیں، اور تفصیلی رہنمائی کی ضرورت ہو تو کسی اہلِ علم استاد سے پوچھیں۔"
+    },
+    fr: {
+      "LESSON 1":"LEÇON 1","Preparing for Salah":"Préparer la prière","Before beginning Salah, a Muslim prepares physically and spiritually.":"Avant de commencer la prière, le musulman se prépare physiquement et spirituellement.","Purification":"Purification","Perform Wudu when required.":"Effectuez le wudu lorsque cela est requis.","Cleanliness":"Propreté","Make sure your body, clothing and place of prayer are clean.":"Assurez-vous que votre corps, vos vêtements et le lieu de prière sont propres.","Clothing":"Vêtements","Wear clothing that fulfills the requirements of Salah.":"Portez des vêtements qui respectent les conditions de la prière.","Qiblah":"Qiblah","Face toward the Ka'bah in Makkah.":"Tournez-vous vers la Ka‘bah à La Mecque.","Prayer time":"Horaire de prière","Perform each obligatory prayer within its prescribed time.":"Accomplissez chaque prière obligatoire dans son temps prescrit.","Have the intention in your heart for the prayer you are performing.":"Ayez dans votre cœur l’intention d’accomplir la prière que vous faites.","Remember:":"À retenir :","The intention is in the heart. A specific spoken formula for intention is not required for the basic intention itself.":"L’intention se trouve dans le cœur. Une formule précise prononcée à voix haute n’est pas requise pour l’intention elle-même.","MARK LESSON COMPLETE":"MARQUER LA LEÇON COMME TERMINÉE",
+      "LESSON 2":"LEÇON 2","Starting Salah":"Commencer la prière","Stand facing the Qiblah and begin the prayer with Takbeer.":"Tenez-vous face à la Qiblah et commencez la prière avec le takbir.","Takbeer":"Takbir","Allah is the Greatest.":"Allah est le Plus Grand.","Opening Supplication":"Invocation d’ouverture","A commonly recited opening supplication is:":"Une invocation d’ouverture couramment récitée est :","Glory is to You, O Allah, and praise. Blessed is Your name, exalted is Your majesty, and there is no deity worthy of worship except You.":"Gloire et louange à Toi, ô Allah. Ton nom est béni, Ta majesté est exaltée et aucune divinité ne mérite l’adoration sauf Toi.",
+      "LESSON 3":"LEÇON 3","Qiyam & Surah Al-Fatihah":"Qiyam et sourate Al-Fatihah","After beginning the prayer, stand for Qiyam and recite the Qur'an. Surah Al-Fatihah is recited in each rak'ah.":"Après avoir commencé la prière, restez debout pour le qiyam et récitez le Coran. La sourate Al-Fatihah est récitée dans chaque rak‘ah.","Surah Al-Fatihah":"Sourate Al-Fatihah","All praise is for Allah, Lord of the worlds.":"Toutes les louanges appartiennent à Allah, Seigneur des mondes.","The Most Merciful, the Especially Merciful.":"Le Tout Miséricordieux, le Très Miséricordieux.","Master of the Day of Judgment.":"Maître du Jour de la rétribution.","You alone we worship and You alone we ask for help.":"C’est Toi seul que nous adorons et c’est de Toi seul que nous implorons l’aide.","Guide us to the straight path.":"Guide-nous sur le droit chemin.","The path of those You have blessed,":"Le chemin de ceux que Tu as comblés de bienfaits,","not those who earned Your anger,":"non de ceux qui ont encouru Ta colère,","nor those who went astray.":"ni de ceux qui se sont égarés.","After Al-Fatihah:":"Après Al-Fatihah :","Say Amin and then continue with the additional Qur'an recitation taught in the next lesson.":"Dites Amin puis continuez avec la récitation supplémentaire du Coran enseignée dans la leçon suivante.",
+      "LESSON 4":"LEÇON 4","Additional Qur'an Recitation":"Récitation supplémentaire du Coran","After Surah Al-Fatihah, an additional portion of the Qur'an is recited in the first two rak'ahs of the obligatory prayer. For a beginner, Surah Al-Ikhlas is a good short surah to learn.":"Après la sourate Al-Fatihah, une partie supplémentaire du Coran est récitée dans les deux premières rak‘ahs de la prière obligatoire. Pour un débutant, la sourate Al-Ikhlas est une bonne courte sourate à apprendre.","Surah Al-Ikhlas":"Sourate Al-Ikhlas","Say: He is Allah, the One.":"Dis : Il est Allah, l’Unique.","Allah, the Eternal Refuge.":"Allah, Celui dont toute la création dépend.","He neither begets nor is born.":"Il n’a pas engendré et n’a pas été engendré.","And there is none comparable to Him.":"Et nul n’est comparable à Lui.","Beginner tip:":"Conseil pour débutant :","You do not have to learn many surahs at once. Start with one short surah and gradually learn more Qur'an.":"Vous n’avez pas besoin d’apprendre beaucoup de sourates à la fois. Commencez par une courte sourate et apprenez progressivement davantage du Coran.",
+      "LESSON 5":"LEÇON 5","Ruku — Bowing":"Ruku — Inclinaison","After the standing recitation, move into Ruku while saying:":"Après la récitation debout, allez en ruku en disant :","Dhikr in Ruku":"Dhikr du ruku","Glory is to my Lord, the Most Great.":"Gloire à mon Seigneur, le Très Grand.",
+      "LESSON 6":"LEÇON 6","Qawmah & Sujood":"Qawmah et Sujood","Rising from Ruku":"Se relever du ruku","Rise from Ruku into the standing position.":"Relevez-vous du ruku jusqu’à la position debout.","Allah hears the one who praises Him.":"Allah entend celui qui Le loue.","When Standing Upright":"En position debout","Our Lord, and to You is all praise.":"Notre Seigneur, à Toi toute la louange.","Going to Sujood":"Aller en sujood","Say Allahu Akbar as you move into Sujood.":"Dites Allahu Akbar en allant en sujood.","Dhikr in Sujood":"Dhikr du sujood","Glory is to my Lord, the Most High.":"Gloire à mon Seigneur, le Très-Haut.","Sujood is a position of great humility before Allah.":"Le sujood est une position de grande humilité devant Allah.","After the first Sujood, sit briefly and then perform the second Sujood.":"Après le premier sujood, asseyez-vous brièvement puis accomplissez le deuxième sujood.",
+      "LESSON 7":"LEÇON 7","Second Rak'ah":"Deuxième rak‘ah","After completing the first rak'ah, stand for the second rak'ah. The basic sequence is repeated.":"Après avoir terminé la première rak‘ah, levez-vous pour la deuxième. La séquence de base est répétée.","Stand":"Se tenir debout","Stand for the second rak'ah.":"Levez-vous pour la deuxième rak‘ah.","Recite Surah Al-Fatihah.":"Récitez la sourate Al-Fatihah.","Additional Qur'an":"Coran supplémentaire","Recite another portion of the Qur'an.":"Récitez une autre partie du Coran.","Perform Ruku and recite its dhikr.":"Faites le ruku et récitez son dhikr.","Rise from Ruku and say Rabbana wa lakal-hamd.":"Relevez-vous du ruku et dites Rabbana wa lakal-hamd.","Two Sujoods":"Deux sujoods","Perform the first Sujood, sit, then perform the second Sujood.":"Faites le premier sujood, asseyez-vous, puis faites le deuxième sujood.","After the Second Rak'ah":"Après la deuxième rak‘ah","In a two-rak'ah prayer such as Fajr Fard, the worshipper sits after the second rak'ah for Tashahhud and then continues with Durood, Dua and Salam.":"Dans une prière de deux rak‘ahs comme le Fajr Fard, le fidèle s’assoit après la deuxième rak‘ah pour le Tashahhud, puis continue avec le Durood, la doua et le Salam.","In prayers with more than two rak'ahs, the sitting and recitation details continue according to the prayer being performed.":"Dans les prières de plus de deux rak‘ahs, les détails de la position assise et de la récitation se poursuivent selon la prière accomplie.",
+      "LESSON 8":"LEÇON 8","Tashahhud & Durood Ibrahim":"Tashahhud et Durood Ibrahim","Tashahhud":"Tashahhud","All greetings, prayers and good things are for Allah.":"Toutes les salutations, les prières et les bonnes choses appartiennent à Allah.","Peace be upon you, O Prophet, and the mercy of Allah and His blessings.":"Que la paix soit sur toi, ô Prophète, ainsi que la miséricorde d’Allah et Ses bénédictions.","Peace be upon us and all the righteous servants of Allah.":"Que la paix soit sur nous et sur tous les serviteurs vertueux d’Allah.","I testify that there is no deity worthy of worship except Allah,":"J’atteste qu’il n’y a aucune divinité digne d’adoration sauf Allah,","and I testify that Muhammad is His servant and Messenger.":"et j’atteste que Muhammad est Son serviteur et Son Messager.","In the final sitting, after Tashahhud, recite Durood Ibrahim.":"Dans la dernière position assise, après le Tashahhud, récitez le Durood Ibrahim.","O Allah, send Your blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy, Glorious.":"Ô Allah, accorde Tes bénédictions à Muhammad et à la famille de Muhammad comme Tu les as accordées à Ibrahim et à la famille d’Ibrahim. Tu es certes Digne de louange et Glorieux.","O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim. Indeed, You are Praiseworthy, Glorious.":"Ô Allah, bénis Muhammad et la famille de Muhammad comme Tu as béni Ibrahim et la famille d’Ibrahim. Tu es certes Digne de louange et Glorieux.",
+      "LESSON 9":"LEÇON 9","Dua & Ending Salah":"Doua et fin de la prière","Make Dua":"Faire une doua","After Tashahhud and Durood Ibrahim in the final sitting, you may make Dua before ending the prayer.":"Après le Tashahhud et le Durood Ibrahim dans la dernière position assise, vous pouvez faire une doua avant de terminer la prière.","A Qur'anic Dua":"Une doua coranique","Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.":"Notre Seigneur, accorde-nous le bien ici-bas et le bien dans l’au-delà, et protège-nous du châtiment du Feu.","Ending the Salah":"Terminer la prière","Turn your face toward the right and say:":"Tournez votre visage vers la droite et dites :","Peace and the mercy of Allah be upon you.":"Que la paix et la miséricorde d’Allah soient sur vous.","Then turn toward the left and say the same:":"Puis tournez-vous vers la gauche et dites la même chose :","🎉 Congratulations!":"🎉 Félicitations !","You have completed the basic beginner Salah course.":"Vous avez terminé le cours de base de la prière pour débutants.","Keep practicing, learn gradually, and ask a qualified teacher when you need detailed guidance.":"Continuez à pratiquer, apprenez progressivement et consultez un enseignant qualifié lorsque vous avez besoin de conseils détaillés."
+    }
+  };
+
+  let currentLang = localStorage.getItem('myFirstIslamLanguage') || 'en';
+
+  function norm(v){ return String(v).replace(/\s+/g,' ').trim(); }
+  function allMap(lang){ return Object.assign({}, T[lang]||{}, S[lang]||{}); }
+
+  function translateTextNode(node,map){
+    const original=norm(node.nodeValue);
+    if(!original) return;
+    if(map[original] !== undefined){
+      node.nodeValue = map[original];
+    }
+  }
+
+  function translateDom(root=document.body){
+    const map=allMap(currentLang);
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(node){
+      if(!node.parentElement) return;
+      if(node.parentElement.closest('#bukhari')) return;
+      translateTextNode(node,map);
+    });
+
+    // English/Urdu meaning boxes: English is shown in EN/FR; Urdu is shown in UR.
+    document.querySelectorAll('.meaning.urdu').forEach(function(el){
+      if(currentLang==='ur') el.classList.remove('language-hidden');
+      else el.classList.add('language-hidden');
+    });
+    document.querySelectorAll('.meaning:not(.urdu)').forEach(function(el){
+      if(currentLang==='ur') el.classList.add('language-hidden');
+      else el.classList.remove('language-hidden');
+    });
+
+    document.documentElement.lang=currentLang==='ur'?'ur':'fr';
+    document.documentElement.dir=currentLang==='ur'?'rtl':'ltr';
+    if(currentLang==='en') document.documentElement.lang='en';
+  }
+
+  function updateLanguageButtons(){
+    ['en','ur','fr'].forEach(function(l){
+      const b=document.getElementById(l+'Btn');
+      if(b) b.classList.toggle('active',currentLang===l);
+    });
+  }
+
+  // Store original English strings before any translation, so switching languages back works.
+  const originalText = new WeakMap();
+  function captureOriginals(){
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    while(walker.nextNode()){
+      const n=walker.currentNode;
+      if(!originalText.has(n)) originalText.set(n,n.nodeValue);
+    }
+  }
+
+  function restoreEnglishText(){
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      if(n.parentElement && n.parentElement.closest('#bukhari')) return;
+      const original=originalText.get(n);
+      if(original!==undefined) n.nodeValue=original;
+    });
+  }
+
+  window.language=function(lang){
+    if(!['en','ur','fr'].includes(lang)) lang='en';
+    currentLang=lang;
+    localStorage.setItem('myFirstIslamLanguage',lang);
+    restoreEnglishText();
+    translateDom();
+    updateLanguageButtons();
+    // Re-render the open dynamic Salah lesson in the selected language.
+    const box=document.getElementById('salahContent');
+    if(box && !box.classList.contains('hide') && window.__lastSalahLesson){
+      const n=window.__lastSalahLesson;
+      box.innerHTML=salahLessons[n];
+      translateDom(box);
+    }
+    // Re-render quiz text in the selected language without touching Bukhari.
+    if(typeof window.loadQuiz==='function' && document.getElementById('quiz')?.classList.contains('active')){
+      window.loadQuiz();
+      translateDom(document.getElementById('quiz'));
+    }
+  };
+
+  // Keep the original lesson content intact; translate after rendering.
+  const originalSalahLesson=window.salahLesson;
+  window.salahLesson=function(number){
+    window.__lastSalahLesson=number;
+    originalSalahLesson(number);
+    restoreEnglishText();
+    translateDom(document.getElementById('salahContent'));
+  };
+
+  // Re-translate dynamic quiz after each load/check/next operation.
+  const originalLoadQuiz=window.loadQuiz;
+  window.loadQuiz=function(){
+    originalLoadQuiz();
+    restoreEnglishText();
+    translateDom(document.getElementById('quiz'));
+  };
+  const originalCheckQuiz=window.checkQuiz;
+  window.checkQuiz=function(answer){
+    originalCheckQuiz(answer);
+    restoreEnglishText();
+    translateDom(document.getElementById('quiz'));
+  };
+  const originalNextQuiz=window.nextQuiz;
+  window.nextQuiz=function(){
+    originalNextQuiz();
+    restoreEnglishText();
+    translateDom(document.getElementById('quiz'));
+  };
+
+  // Initial capture must happen after the existing app has rendered its static content.
+  window.addEventListener('load',function(){
+    captureOriginals();
+    language(currentLang);
+  });
+})();
+</script>
+
 </body>
 </html>
