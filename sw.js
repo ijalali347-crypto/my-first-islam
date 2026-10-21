@@ -1,8 +1,9 @@
-const CACHE_NAME = "my-first-islam-v1";
+const CACHE_NAME = "my-first-islam-v2-quran";
 
 const APP_FILES = [
   "./",
   "./index.html",
+  "./quran.html",
   "./manifest.json",
   "./icon.svg"
 ];
